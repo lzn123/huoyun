@@ -44,8 +44,12 @@ Page({
       wx.request({
         url: URL + 'login/reg',
         data: { name: username, pwd: password, identity: identity},
+        header: {//请求头
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
         method: 'post',
         success: function (res) {
+        
           wx.showToast({
             title: res.data.info,
             duration: 2000,
@@ -53,15 +57,17 @@ Page({
           })
           if (res.data.status != 200){
             return false
-          } else if (identity == 1){   //如果是司机 进入审核页
-            wx.navigateTo({
-              url: '../guanli/index',
-            })
           }else{
-            wx.navigateTo({
-              url: '../index/index',
-            })
-          }
+            if(identity == 1){   //如果是司机 进入审核页
+                  wx.navigateTo({
+                    url: '../guanli/index',
+                  })
+                }else{
+                  wx.navigateTo({
+                    url: '../index/index',
+                  })
+                }
+          } 
         },
         fail: function () {
           wx.showToast({
@@ -70,13 +76,7 @@ Page({
             icon: "none"
           })
         },
-        complete: function () {
-          wx.showToast({
-            title: '异常',
-            duration: 2000,
-            icon: "none"
-          })
-        }
+   
       })
     
 },
