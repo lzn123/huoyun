@@ -25,7 +25,7 @@ App({
     }
   },
   globalData:{
-    url:'https://g.hbyingluo.com/index.php?s=/api/',
+    url:'https://g.hbyingluo.com/api/',
     header:{'Session': ''},
   }
 })
