@@ -22,10 +22,35 @@ Page({
     
     wx.request({
       url: URL+'login/login',
-      data: {aa:'bb'},
+      data: {
+        account: username, 
+        pwd: password, 
+      },
+      header: {//请求头
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
       method: 'post', 
       success: function (res) {
-       console.log(res);
+        console.log(res.data.status);
+        wx.showToast({
+          title: res.data.info,
+          duration: 2000,
+          icon: "none"
+        })
+        if (res.data.status != 200 && res.data.status != 201) {
+          return false
+        }
+          if (res.data.status == 200) {  
+            wx.navigateTo({
+              url: '../index/index',
+            })
+          }
+          if (res.data.status == 201){
+            wx.navigateTo({
+              url: '../car/index',
+            })
+          }
+        
       },
       fail: function () {
         // fail

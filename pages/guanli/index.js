@@ -1,4 +1,7 @@
 // pages/guanli/index.js
+var util = require("../../utils/util.js");
+const app = getApp()
+const URL = app.globalData.url
 Page({
 
   /**
@@ -73,7 +76,12 @@ Page({
   //  })
   // },
   joinPicture: function (e) {
-    let photo = /^1[345768]{1}\d{9}$/;
+    // var that = this;
+    // var vehiclename = this.data.vehiclename
+    // var vehiclephone = this.data.vehiclephone
+    // var vehiclebulk = this.data.vehiclebulk
+    // var vehiclecarrying = this.data.vehiclecarrying
+    //let photo = /^1[345768]{1}\d{9}$/;
     let params = e.detail.value;
     if (params.vehiclename == '') {
       showToast("车主姓名");
@@ -103,17 +111,17 @@ Page({
       })
       return;
     }
-    if (!photo.test(params.vehiclephone)) {
-      wx.showToast({
-        title: '手机号格式不正确！',
-        duration: 1000,
-        icon: "none"
-      })
-      this.setData({
-        phfocus: true
-      })
-      return;
-    }
+    // if (!photo.test(params.vehiclephone)) {
+    //   wx.showToast({
+    //     title: '手机号格式不正确！',
+    //     duration: 1000,
+    //     icon: "none"
+    //   })
+    //   this.setData({
+    //     phfocus: true
+    //   })
+    //   return;
+    // }
     function showToast(val) {
       wx.showToast({
         title: val + '不能为空',
@@ -122,29 +130,29 @@ Page({
       })
     }
     wx.request({
-      url: 'https://g.hbyingluo.com/vehicle.php',
-      method: "POST",
-      data: {
+      url: URL + 'login/approve',
+      data: { 
         vehiclename: params.vehiclename,
         vehiclephone: params.vehiclephone,
         vehiclebulk: params.vehiclebulk,
         vehiclecarrying: params.vehiclecarrying,
       },
-      header: {
-        'content-type': 'application/x-www-form-urlencoded' // 默认值
+      header: {//请求头
+        "Content-Type": "application/x-www-form-urlencoded"
       },
+      method: 'post',
       success: function (res) {
-        console.log(res.data)
-        if (res.data.ve == 3) {
-          wx.navigateTo({
-            url: '../car/index',
-          })
-          wx.showToast({
-            title: '提交成功',
-            duration: 2000,
-            icon: "none"
-          })
-        }
+        console.log(res)
+        // if (res.data.ve == 3) {
+        //   wx.navigateTo({
+        //     url: '../car/index',
+        //   })
+        //   wx.showToast({
+        //     title: '提交成功',
+        //     duration: 2000,
+        //     icon: "none"
+        //   })
+        // }
       }
     })
     // var index = e.currentTarget.dataset.index;

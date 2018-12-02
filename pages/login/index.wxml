@@ -5,7 +5,7 @@
   
     <view class="input-area">
       <image mode="aspectFit" class='phone' src="../../images/phone.png"></image>
-      <input id="username" bindinput="usernameInput" name="phone" maxlength='40' type="text" placeholder="手机号" style='padding-left: 10%;' class='phone1' />
+      <input id="username" bindinput="usernameInput" name="username" maxlength='40' type="text" placeholder="手机号" style='padding-left: 10%;' class='phone1' />
       <view class='l1'></view>
     </view>
     <view class="input-area">
