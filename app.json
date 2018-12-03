@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/guanli/index",
     "pages/index/index",
     "pages/logs/logs",
     "pages/advices/advices",
@@ -19,7 +20,7 @@
     "pages/xuqiou/index",
     "pages/car/index",
     "pages/xiaoxi/index",
-    "pages/guanli/index",
+    
     "pages/userdingdan/index",
     "pages/carxiangqing/index",
     "pages/carjieshou/index",
