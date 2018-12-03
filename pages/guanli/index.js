@@ -76,8 +76,8 @@ Page({
   //  })
   // },
   joinPicture: function (e) {
-    // var that = this;
-    // var vehiclename = this.data.vehiclename
+    var that = this;
+    var vehiclename = this.data.vehiclename
     // var vehiclephone = this.data.vehiclephone
     // var vehiclebulk = this.data.vehiclebulk
     // var vehiclecarrying = this.data.vehiclecarrying
@@ -155,127 +155,127 @@ Page({
         // }
       }
     })
-    // var index = e.currentTarget.dataset.index;
-    // var evalList = this.data.evalList;
-    // var that = this;
-    // var imgNumber = evalList[index].tempFilePaths;
-    // if (imgNumber.length >= 1) {
-    //   wx.showModal({
-    //     title: '',
-    //     content: '最多上传1张图片',
-    //     showCancel: false,
-    //   })
-    //   return;
-    // }
-  //   wx.showActionSheet({
-  //     itemList: ["从相册中选择", "拍照"],
-  //     itemColor: "#f7982a",
-  //     success: function (res) {
-  //       if (!res.cancel) {
-  //         if (res.tapIndex == 0) {
-  //           that.chooseWxImage("album", imgNumber);
-  //         } else if (res.tapIndex == 1) {
-  //           that.chooseWxImage("camera", imgNumber);
-  //         }
-  //       }
-  //     }
-  //   })
-  // },
-  // chooseWxImage: function (type, list) {
-  //   var img = list;
-  //   var len = img.length;
-  //   var that = this;
-  //   var evalList = this.data.evalList;
-  //   wx.chooseImage({
-  //     count: 3,
-  //     sizeType: ["original", "compressed"],
-  //     sourceType: [type],
-  //     success: function (res) {
-  //       var addImg = res.tempFilePaths;
-  //       var addLen = addImg.length;
-  //       if ((len + addLen) > 3) {
-  //         for (var i = 0; i < (addLen - len); i++) {
-  //           var str = {};
-  //           str.pic = addImg[i];
-  //           img.push(str);
-  //         }
-  //       } else {
-  //         for (var j = 0; j < addLen; j++) {
-  //           var str = {};
-  //           str.pic = addImg[j];
-  //           img.push(str);
-  //         }
-  //       }
-  //       that.setData({
-  //         evalList: evalList
-  //       })
-  //       that.upLoadImg(img);
-  //     },
-  //   })
-  // },
-  // upLoadImg: function (list) {
-  //   var that = this;
-  //   this.upload(that, list);
-  // },
-  // //多张图片上传
-  // upload: function (page, path) {
-  //   var that = this;
-  //   var curImgList = [];
-  //   for (var i = 0; i < path.length; i++) {
-  //     wx.showToast({
-  //       icon: "loading",
-  //       title: "正在上传"
-  //     }),
-  //       wx.uploadFile({
-  //         url: app.globalData.subDomain + '/API/AppletApi.aspx',//接口处理在下面有写
-  //         filePath: path[i].pic,
-  //         name: 'file',
-  //         header: { "Content-Type": "multipart/form-data" },
-  //         formData: {
-  //           douploadpic: '1'
-  //         },
-  //         success: function (res) {
-  //           curImgList.push(res.data);
-  //           var evalList = that.data.evalList;
-  //           evalList[0].imgList = curImgList;
-  //           that.setData({
-  //             evalList: evalList
-  //           })
-  //           if (res.statusCode != 200) {
-  //             wx.showModal({
-  //               title: '提示',
-  //               content: '上传失败',
-  //               showCancel: false
-  //             })
-  //             return;
-  //           }
-  //           var data = res.data
-  //           page.setData({  //上传成功修改显示头像
-  //             src: path[0]
-  //           })
-  //         },
-  //         fail: function (e) {
-  //           wx.showModal({
-  //             title: '提示',
-  //             content: '上传失败',
-  //             showCancel: false
-  //           })
-  //         },
-  //         complete: function () {
-  //           wx.hideToast();  //隐藏Toast
-  //         }
-  //       })
-  //   }
-  // },
-  // //删除图片
-  // clearImg: function (e) {
-  //   var index = e.currentTarget.dataset.index;
-  //   var evalList = this.data.evalList;
-  //   var img = evalList[0].tempFilePaths;
-  //   img.splice(index, 1);
-  //   this.setData({
-  //     evalList: evalList
-  //   })
-  //   this.upLoadImg(img);
+    var index = e.currentTarget.dataset.index;
+    var evalList = this.data.evalList;
+    var that = this;
+    var imgNumber = evalList[index].tempFilePaths;
+    if (imgNumber.length >= 1) {
+      wx.showModal({
+        title: '',
+        content: '最多上传1张图片',
+        showCancel: false,
+      })
+      return;
+    }
+    wx.showActionSheet({
+      itemList: ["从相册中选择", "拍照"],
+      itemColor: "#f7982a",
+      success: function (res) {
+        if (!res.cancel) {
+          if (res.tapIndex == 0) {
+            that.chooseWxImage("album", imgNumber);
+          } else if (res.tapIndex == 1) {
+            that.chooseWxImage("camera", imgNumber);
+          }
+        }
+      }
+    })
+  },
+  chooseWxImage: function (type, list) {
+    var img = list;
+    var len = img.length;
+    var that = this;
+    var evalList = this.data.evalList;
+    wx.chooseImage({
+      count: 3,
+      sizeType: ["original", "compressed"],
+      sourceType: [type],
+      success: function (res) {
+        var addImg = res.tempFilePaths;
+        var addLen = addImg.length;
+        if ((len + addLen) > 3) {
+          for (var i = 0; i < (addLen - len); i++) {
+            var str = {};
+            str.pic = addImg[i];
+            img.push(str);
+          }
+        } else {
+          for (var j = 0; j < addLen; j++) {
+            var str = {};
+            str.pic = addImg[j];
+            img.push(str);
+          }
+        }
+        that.setData({
+          evalList: evalList
+        })
+        that.upLoadImg(img);
+      },
+    })
+  },
+  upLoadImg: function (list) {
+    var that = this;
+    this.upload(that, list);
+  },
+  //多张图片上传
+  upload: function (page, path) {
+    var that = this;
+    var curImgList = [];
+    for (var i = 0; i < path.length; i++) {
+      wx.showToast({
+        icon: "loading",
+        title: "正在上传"
+      }),
+        wx.uploadFile({
+          url: app.globalData.subDomain + '/API/AppletApi.aspx',//接口处理在下面有写
+          filePath: path[i].pic,
+          name: 'file',
+          header: { "Content-Type": "multipart/form-data" },
+          formData: {
+            douploadpic: '1'
+          },
+          success: function (res) {
+            curImgList.push(res.data);
+            var evalList = that.data.evalList;
+            evalList[0].imgList = curImgList;
+            that.setData({
+              evalList: evalList
+            })
+            if (res.statusCode != 200) {
+              wx.showModal({
+                title: '提示',
+                content: '上传失败',
+                showCancel: false
+              })
+              return;
+            }
+            var data = res.data
+            page.setData({  //上传成功修改显示头像
+              src: path[0]
+            })
+          },
+          fail: function (e) {
+            wx.showModal({
+              title: '提示',
+              content: '上传失败',
+              showCancel: false
+            })
+          },
+          complete: function () {
+            wx.hideToast();  //隐藏Toast
+          }
+        })
+    }
+  },
+  //删除图片
+  clearImg: function (e) {
+    var index = e.currentTarget.dataset.index;
+    var evalList = this.data.evalList;
+    var img = evalList[0].tempFilePaths;
+    img.splice(index, 1);
+    this.setData({
+      evalList: evalList
+    })
+    this.upLoadImg(img);
   },
 })
