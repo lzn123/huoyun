@@ -55,7 +55,7 @@
       </view>
 
       <view class="need-One-right">
-        <input type="text" placeholder='桥西区新胜利大街6号' name="qidian"></input>
+        <input type="text" value='{{departure}}' name="qidian"></input>
          <!-- <view class="weui-input" style='color:rgb(166,166,166); margin-top:12rpx; ' bindtap="sexDeparture" name="qidian">{{departure}}</view>  -->
       </view>
       <view class="clear"></view>
@@ -66,7 +66,7 @@
         <image src="/images/end.png"></image>
       </view>
       <view class="need-One-right">
- <input type="text" placeholder='终点' name="zhongdian"></input>
+ <input type="text" value='{{destination}}' name="zhongdian"></input>
   <!-- <view style='color:rgb(166,166,166);margin-top:10rpx;' bindtap="sexDestination" name="zhongdian">{{destination}}</view> -->
       </view>
       <view class="clear"></view>

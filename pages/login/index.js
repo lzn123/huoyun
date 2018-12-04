@@ -50,7 +50,6 @@ Page({
               url: '../car/index',
             })
           }
-        
       },
       fail: function () {
         // fail

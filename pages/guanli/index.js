@@ -80,12 +80,12 @@ Page({
         })
         return false
       }
-    console.log(common.uploadimg({
+    common.uploadimg({
       path:pic,
       that:this,
       url: URL + 'login/reg'
-    }));
-
+     //url:'http://www.zs.com/test/index/'
+    })
   }
  
 })

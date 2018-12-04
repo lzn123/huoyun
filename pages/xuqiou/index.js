@@ -39,6 +39,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (option) {
+    var that = this  
+    var departure = option.departure
+    var destination = option.destination
+    that.setData({
+      departure: departure,
+        destination: destination
+    })
+
   },
   formSubmit:function(e){
     let photo = /^1[345768]{1}\d{9}$/;
