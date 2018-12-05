@@ -98,7 +98,8 @@
 }
 .need-Two-right{
   float:right;
-  width:60%;
+  width:43%;
+  text-align: right;
 }
 .need-Two-right image{
   width:50rpx;

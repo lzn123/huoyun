@@ -58,7 +58,8 @@
       </view>
 
       <view class="need-One-right">
-         <input type="text" placeholder='桥西区新胜利大街6号'></input>
+         <!-- <input type="text" ></input> -->
+         <text placeholder='桥西区新胜利大街6号'>{{quanbu.user_origin}}</text>
          <!-- <view class="weui-input" style='color:rgb(166,166,166); margin-top:12rpx; ' bindtap="sexDeparture" name="qidian">{{departure}}</view> 
       </view> -->
       <view class="clear"></view>
@@ -69,7 +70,8 @@
         <image src="/images/end.png"></image>
       </view>
       <view class="need-One-right">
-  <input type="text" placeholder='终点'></input>
+  <!-- <input type="text" placeholder='终点'></input> -->
+  <text placeholder='终点'>{{quanbu.user_terminus}}</text>
   <!-- <view style='color:rgb(166,166,166);margin-top:10rpx;' bindtap="sexDestination" name="zhongdian">{{destination}}</view> -->
       </view>
       <view class="clear"></view>
@@ -85,6 +87,7 @@
       <view class="need-Two-right">
         <image src=""></image>
         <!-- <input type="text" placeholder='请选择运送类型' name="leixing"></input> -->
+        <text class='texta'>{{quanbu.delivery}}</text>
         <view class="clear"></view>
       </view>
       <view class="clear"></view>
@@ -96,6 +99,7 @@
       <view class="need-Two-right">
         <image></image>
         <!-- <input type="text" placeholder='请输入发货人姓名' name="user"></input> -->
+        <text>{{quanbu.user_name}}</text>
         <view class="clear"></view>
       </view>
       <view class="clear"></view>
@@ -107,6 +111,7 @@
       <view class="need-Two-right">
         <image src=""></image>
         <!-- <input type="text" placeholder='请输入发货人电话' type="text" id="phone" name="phone"></input> -->
+        <text>{{quanbu.user_phone}}</text>
         <view class="clear"></view>
       </view>
       <view class="clear"></view>
@@ -118,6 +123,7 @@
       <view class="need-Two-right">
         <image src=""></image>
         <!-- <input type="text" placeholder='李某某' name="consignee"></input> -->
+        <text>{{quanbu.party_name}}</text>
         <view class="clear"></view>
       </view>
       <view class="clear"></view>
@@ -129,6 +135,7 @@
       <view class="need-Two-right">
         <image src=""></image>
         <!-- <input type="text" placeholder='15188888888' name="phone1"></input> -->
+        <text>{{quanbu.party_phone}}</text>
         <view class="clear"></view>
       </view>
       <view class="clear"></view>
@@ -140,6 +147,7 @@
       <view class="need-Two-right">
         <image src=""></image>
         <!-- <input type="text" placeholder='必填' name="shu"></input> -->
+        <text>{{quanbu.amount}}</text>
         <view class="clear"></view>
       </view>
       <view class="clear"></view>
@@ -151,6 +159,7 @@
       <view class="need-Two-right">
         <image src=""></image>
         <!-- <input type="text" placeholder='必填' name="tiji"></input> -->
+        <text>{{quanbu.volume}}</text>
         <view class="clear"></view>
       </view>
       <view class="clear"></view>
@@ -164,6 +173,7 @@
       <view class="need-Two-right">
         <image src=""></image>
         <!-- <input type="text" placeholder='必填' name="zhongliang"></input> -->
+        <text>{{quanbu.seed}}</text>
         <view class="clear"></view>
       </view>
       <view class="clear"></view>
@@ -194,6 +204,7 @@
       <view class="need-Two-right">
         <image src=""></image>
         <!-- <input type="text" placeholder='必填' name="zhongliang"></input> -->
+        <text>{{quanbu.remark}}</text>
         <view class="clear"></view>
       </view>
       <view class="clear"></view>
@@ -207,6 +218,7 @@
       <view class="need-Two-right">
         <image src=""></image>
         <!-- <input type="text" placeholder='必填' name="zhongliang"></input> -->
+        <text>{{quanbu.car_money}}元</text>
         <view class="clear"></view>
       </view>
       <view class="clear"></view>

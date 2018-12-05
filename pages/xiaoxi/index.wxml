@@ -7,11 +7,11 @@
 <view class="gear">
 <span class="gear_add">{{gear}}</span>
 </view>
-<block wx:for="{{quanbu}}" wx:for-item="item" wx:key="index">
+<block wx:for="{{quanbu}}" wx:for-item="item" wx:key="index" >
 <view class='day_add'>
  <span class="day_test">订单时间: {{item.add_time}}</span>
 </view>
-<view class="gear_xinxi" bindtap='dingdan'>
+<view class="gear_xinxi" bindtap='dingdan' data-id="{{item.id}}">
 <span class="gear_add">{{dingdan}}<text style='color:rgb(236,179,70)'>接收</text></span>
 <span class="gear_add">起点: {{item.user_origin}}</span>
 <span class="gear_add">终点: {{item.user_terminus}}</span>

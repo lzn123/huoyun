@@ -18,9 +18,9 @@ Page({
   },
   dingdan:function(e){
     var that = this
-    var dingdan = that.data.id
+    var id = e.currentTarget.dataset.id
     wx.navigateTo({
-      url: '../carxiangqing/index=' + id,
+      url: '../carxiangqing/index?id=' + id,
       })
   },
   /**

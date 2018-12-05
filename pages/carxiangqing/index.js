@@ -1,4 +1,7 @@
 // pages/need/index.js
+var util = require("../../utils/util.js");
+const app = getApp()
+const URL = app.globalData.url
 Page({
   // formSubmit: function (e) {
   //   console.log('form发生了submit事件，携带数据为：', e.detail.value)
@@ -59,12 +62,23 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (e) {
-    // var that = this 
-    // var dingdan = that.data.id
-    // that.setData({
-    //   dingdan: id,
-    // })
-    console.log(id);
+    var that = this 
+    var id = this.data.id
+    wx.request({
+      url: URL + 'Desired/details',
+      data: { 
+        id:e.id
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        console.log(res.data)
+        that.setData({
+          quanbu: res.data,
+        })
+      }
+    })
   },
 
   /**
