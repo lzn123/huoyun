@@ -238,8 +238,8 @@
     
       <!-- <button type="">{{fomttoe}}</button> -->
 
-     <button  disabled="{{registDisabled}}" formType="submit"  loading="{{btnLoading}}" class='quxiao'>取消</button>
-             <button  disabled="{{registDisabled}}" formType="submit"  loading="{{btnLoading}}" class='queding'>确定</button>
+     <button  disabled="{{registDisabled}}"   loading="{{btnLoading}}" class='quxiao'>取消</button>
+<button  disabled="{{registDisabled}}" bindtap='book' data-id="{{quanbu.id}}" loading="{{btnLoading}}" class='queding'>确定</button>
     
     
   </view>

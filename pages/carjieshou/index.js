@@ -1,4 +1,7 @@
 // pages/jifen/index.js
+var util = require("../../utils/util.js");
+const app = getApp()
+const URL = app.globalData.url
 Page({
 
   /**
@@ -8,7 +11,7 @@ Page({
     selected: false,
     selected1: true,
     selected2: false,
-    day: '2018-01-01   12:00',
+    //day: '2018-01-01   12:00',
     gear: '订单编号: 15482648547',
     dizhi: '石家庄市桥西区新胜利大街塔坛国际5号写字楼至桥西区宫家庄学生公寓',
     leixing: '搬家',
@@ -38,15 +41,31 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: function () {
+     
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    var that = this
+    //var id = this.data.id
+    wx.request({
+      url: URL + 'Desired/receive',
+      data: {
+        //id: e.id
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        console.log(res.data)
+        that.setData({
+          jieshou: res.data,
+        })
+      }
+    })
   },
 
   /**

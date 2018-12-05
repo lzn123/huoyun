@@ -13,16 +13,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // selected: true,
-    // selected1: false,
-    // selected2: false,
-    // departure: '出发地',
-    // destination: '目的地',
     fomttoe: '确定',
     quxiao: '取消',
-    // registDisabled: false,
-    // btnLoading: false,
-    jinqian:'100'
+    //jinqian:'100'
 
   },
   queding:function(){
@@ -30,34 +23,39 @@ Page({
       url: '../carjieshou/index',
     })
   },
-  // sexDeparture: function () {
-  //   var that = this;
-  //   wx.chooseLocation({
-  //     success: function (res) {
-  //       that.setData({
-  //         departure: res.address
-  //       })
-  //     }
-  //   })
-  // },
-  // sexDestination: function () {
-  //   var that = this;
-  //   wx.chooseLocation({
-  //     success: function (res) {
-  //       that.setData({
-  //         destination: res.address
-  //       })
-  //     }
-  //   })
-  // },
-  // onLoad: function (options) {
-  //   this.setData({
-  //     gender: app.globalData.userInfo.gender,
-  //     name: (app.globalData.userInfo.name == '') ? app.globalData.userInfo.nickName : app.globalData.userInfo.name,
-  //     phone: app.globalData.userInfo.phone,
-  //     vehicle: app.globalData.userInfo.vehicle
-  //   })
-  // },
+  book:function (e){
+    var that = this
+    var id = e.currentTarget.dataset.id
+    wx.request({
+      url: URL + 'Desired/confirm',
+      data: {
+        id:id
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        console.log(res.data);
+        if (res.data.status == 200){
+          wx.showToast({
+            title: '接收订单成功',
+            duration: 2000,
+            icon: "none"
+          })
+          wx.navigateTo({
+            url: '../carjieshou/index',
+          })
+        }
+        if (res.data.status == 105){
+          wx.showToast({
+            title: '接收订单接收失败',
+            duration: 2000,
+            icon: "none"
+          })
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

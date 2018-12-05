@@ -83,7 +83,7 @@ Page({
     common.uploadimg({
       path:pic,
       that:this,
-      url: URL + 'login/reg'
+      url: URL + 'login/approve'
      //url:'http://www.zs.com/test/index/'
     })
   }
