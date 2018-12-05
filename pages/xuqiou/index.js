@@ -1,14 +1,8 @@
 // pages/need/index.js
+var util = require("../../utils/util.js");
+const app = getApp()
+const URL = app.globalData.url
 Page({
-  // formSubmit: function (e) {
-  //   console.log('form发生了submit事件，携带数据为：', e.detail.value)
-  // },
-  // formReset: function () {
-  //   console.log('form发生了reset事件')
-  // },
-  /**
-   * 页面的初始数据
-   */
   data: {
     selected: true,
     selected1: false,
@@ -41,38 +35,18 @@ Page({
       selected1: false
     })
   },
-  sexDeparture: function () {
-    var that = this;
-    wx.chooseLocation({
-      success: function (res) {
-        that.setData({
-          departure: res.address
-        })
-      }
-    })
-  },
-  sexDestination: function () {
-    var that = this;
-    wx.chooseLocation({
-      success: function (res) {
-        that.setData({
-          destination: res.address
-        })
-      }
-    })
-  },
-  onLoad: function (options) {
-    this.setData({
-      gender: app.globalData.userInfo.gender,
-      name: (app.globalData.userInfo.name == '') ? app.globalData.userInfo.nickName : app.globalData.userInfo.name,
-      phone: app.globalData.userInfo.phone,
-      vehicle: app.globalData.userInfo.vehicle
-    })
-  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (option) {
+    var that = this  
+    var departure = option.departure
+    var destination = option.destination
+    that.setData({
+      departure: departure,
+        destination: destination
+    })
+
   },
   formSubmit:function(e){
     let photo = /^1[345768]{1}\d{9}$/;
@@ -186,27 +160,27 @@ function showToast(val) {
   })
 }
 wx.request({
-  url: 'https://g.hbyingluo.com/details.php', //仅为示例，并非真实的接口地址
+  url: URL + 'Desired/add',
   method: "POST",
   data: {
-    phone: params.phone,
-    leixing: params.leixing,
-    user: params.user,
-    qidian: params.qidian,
-    zhongdian: params.zhongdian,
-    shu: params.shu,
-    tiji: params.tiji,
-    zhongliang: params.zhongliang,
-    beizhu:params.beizhu,
-    phone1: params.phone1,
-    consignee: params.consignee
+    qidian: params.qidian,//送货起点
+    zhongdian: params.zhongdian,//送货终点
+    leixing: params.leixing,//运送货物类型
+    user: params.user,//发货人姓名
+    phone: params.phone,//发货人电话
+    consignee: params.consignee,//收货人的姓名
+    phone1: params.phone1,//收货人的电话
+    shu: params.shu,//数量
+    tiji: params.tiji,//体积
+    zhongliang: params.zhongliang,//重量
+    beizhu:params.beizhu,//备注
   },
   header: {
     'content-type': 'application/x-www-form-urlencoded' // 默认值
   },
 
   success: function (res) {
-    console.log(res.data)
+    console.log(res.data.status)
     //getApp().globalData.header.Session = 'JSESSIONID=' + res.data.sessionId;  //这一句很重要。
     // getApp().globalData.Session = res.data.sessionId;
     // if (res.data.status == 1) {
@@ -214,10 +188,13 @@ wx.request({
     //     url: '../index/index',
     //   })
     // }
-    if (res.data.van == 3) {
-      wx.navigateTo({
-        url: '../advices/advices',
-      })
+    if (res.data.status != 200) {
+      return false
+    }
+    if (res.data.status == 200) {
+      // wx.navigateTo({
+      //   url: '../advices/advices',
+      // })
       wx.showToast({
         title: '发布成功',
         duration: 2000,

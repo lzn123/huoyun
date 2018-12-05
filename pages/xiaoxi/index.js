@@ -1,34 +1,53 @@
 // pages/xiaoxi/index.js
+var util = require("../../utils/util.js");
+const app = getApp()
+const URL = app.globalData.url
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    day:'2018-01-01   12:00',
+   // day:'2018-01-01   12:00',
     gear:'河北河道运输有限公司....',
-    dingdan: '您有新的订单，请接收',
-    qidian:'起点: 石家庄桥西区新胜利大街6号塔坛国际商贸城5号写字',
-    zhongdian:'终点: 石家庄长安区谈南路63号睿和中心',
+    dingdan: '您有新的订单，请',
+    //qidian:'起点: 石家庄桥西区新胜利大街6号塔坛国际商贸城5号写字',
+  //  zhongdian:'终点: 石家庄长安区谈南路63号睿和中心',
     banben:'新版来袭,积分好礼送不停',
   },
-  dingdan:function(){
+  dingdan:function(e){
+    var that = this
+    var dingdan = that.data.id
     wx.navigateTo({
-        url: '../carxiangqing/index',
+      url: '../carxiangqing/index=' + id,
       })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this
+    wx.request({
+      url: URL + 'Desired/push',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        console.log(res)
+        that.setData({
+          quanbu: res.data,
+        })
+      }
+    })
+    
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   /**

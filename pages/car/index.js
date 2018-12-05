@@ -1,4 +1,7 @@
 // pages/car/index.js
+var util = require("../../utils/util.js");
+const app = getApp()
+const URL = app.globalData.url
 Page({
 
   /**
@@ -51,8 +54,8 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: function () {
+    
   },
 
   /**

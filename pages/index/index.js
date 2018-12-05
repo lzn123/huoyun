@@ -101,12 +101,18 @@ Page({
     })
   },
   yongche: function (e){
+    var that = this
     var viewId = e.target.id; 
     var viewDataSet = e.target.dataset; 
     var viewText = viewDataSet.text; 
+
+/**地址*/
+    var departure = that.data.departure
+    var destination = that.data.destination
+
     console.log(viewId);
     wx.navigateTo({
-      url: '../xuqiou/index?+category',
+      url: '../xuqiou/index?departure=' + departure + '&destination=' + destination,
     })
   },
 

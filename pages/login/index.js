@@ -37,20 +37,51 @@ Page({
           duration: 2000,
           icon: "none"
         })
+        // save: function(e) {
+        //   console.log('开始保存')
+        //   wx.setStorage({
+        //     key: 'key1',
+        //     data: 'data1',
+        //     success: function (res) {
+        //       console.log('异步保存成功')
+        //     }
+        //   })
+        //   wx.setStorageSync('key2', 'data2')
+        //   console.log('同步保存成功')
+        // }
         if (res.data.status != 200 && res.data.status != 201) {
           return false
         }
-          if (res.data.status == 200) {  
+          if (res.data.status == 200) {
+            console.log('开始保存')  
             wx.navigateTo({
               url: '../index/index',
             })
+            wx.setStorage({
+            key: 'key1',
+              data:  'account:username',
+            success: function (res) {
+              console.log('异步保存成功')
+            }
+          })
+          //   wx.setStorageSync('key2', 'data2')
+          // console.log('同步保存成功')
           }
           if (res.data.status == 201){
+            console.log('开始保存')  
             wx.navigateTo({
               url: '../car/index',
             })
+            wx.setStorage({
+              key: 'key2',
+              data: account.username,
+              success: function (res) {
+                console.log('异步保存成功')
+              }
+            })
+            // wx.setStorageSync('key2', 'data2')
+            // console.log('同步保存成功')
           }
-        
       },
       fail: function () {
         // fail
@@ -69,7 +100,7 @@ Page({
 
   forgotpassword:function(){
        wx.navigateTo({
-         url: '../findpassword/index',
+         url: '../guanli/index',
        })
   },
   usernameInput: function (event) {

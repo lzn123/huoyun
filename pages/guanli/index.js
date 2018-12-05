@@ -1,5 +1,6 @@
 // pages/guanli/index.js
 var util = require("../../utils/util.js");
+var common = require("../../utils/common.js");
 const app = getApp()
 const URL = app.globalData.url
 Page({
@@ -8,11 +9,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    evalList: [{ tempFilePaths: [0], imgList: [] }],
-    evalList: [{ tempFilePaths: [1], imgList: [] }],
-    evalList: [{ tempFilePaths: [2], imgList: [] }],
-    evalList: [{ tempFilePaths: [3], imgList: [] }],
-    registBtnTxt:'保存',
+    pic: [
+      
+        // 0: '', //身份证反面
+        // 1: '', //身份证正面
+        // 2: '', //驾驶证照片
+        // 3:'' //运营证
+     
+    ],
+    registBtnTxt: '保存',
   },
 
   /**
@@ -22,260 +27,65 @@ Page({
 
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+/**
+ *  参数
+ */
+  vehiclename: function (event) {
+    this.setData({ vehiclename: event.detail.value })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  vehiclephone: function (event) {
+    this.setData({ vehiclephone: event.detail.value })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  vehiclebulk: function (event) {
+    this.setData({ vehiclebulk: event.detail.value })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  vehiclecarrying: function (event) {
+    this.setData({ vehiclecarrying: event.detail.value })
   },
+ 
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
-  // baocun:function(){
-  //  wx.navigateTo({
-  //    url: '../car/index',
-  //  })
-  // },
-  joinPicture: function (e) {
-    // var that = this;
-    // var vehiclename = this.data.vehiclename
-    // var vehiclephone = this.data.vehiclephone
-    // var vehiclebulk = this.data.vehiclebulk
-    // var vehiclecarrying = this.data.vehiclecarrying
-    //let photo = /^1[345768]{1}\d{9}$/;
-    let params = e.detail.value;
-    if (params.vehiclename == '') {
-      showToast("车主姓名");
-      this.setData({
-        phfocus: true
-      })
-      return;
-    }
-    if (params.vehiclephone == '') {
-      showToast("手机号");
-      this.setData({
-        phfocus: true
-      })
-      return;
-    }
-    if (params.vehiclebulk == '') {
-      showToast("车厢体积");
-      this.setData({
-        phfocus: true
-      })
-      return;
-    }
-    if (params.vehiclecarrying == '') {
-      showToast("车厢载重量");
-      this.setData({
-        phfocus: true
-      })
-      return;
-    }
-    // if (!photo.test(params.vehiclephone)) {
-    //   wx.showToast({
-    //     title: '手机号格式不正确！',
-    //     duration: 1000,
-    //     icon: "none"
-    //   })
-    //   this.setData({
-    //     phfocus: true
-    //   })
-    //   return;
-    // }
-    function showToast(val) {
-      wx.showToast({
-        title: val + '不能为空',
-        duration: 1000,
-        icon: "none"
-      })
-    }
-    wx.request({
-      url: URL + 'login/approve',
-      data: { 
-        vehiclename: params.vehiclename,
-        vehiclephone: params.vehiclephone,
-        vehiclebulk: params.vehiclebulk,
-        vehiclecarrying: params.vehiclecarrying,
-      },
-      header: {//请求头
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      method: 'post',
+  //上传本地
+  uploadImg: function (e) {
+    console.log(e);
+    var that = this;
+    var k = "pic." + e.currentTarget.dataset.index + "";
+    wx.chooseImage({
+      count: 1,  //最多可以选择的图片总数 
       success: function (res) {
-        console.log(res)
-        // if (res.data.ve == 3) {
-        //   wx.navigateTo({
-        //     url: '../car/index',
-        //   })
-        //   wx.showToast({
-        //     title: '提交成功',
-        //     duration: 2000,
-        //     icon: "none"
-        //   })
-        // }
+        console.log(res);
+        var file = res.tempFilePaths[0];
+
+        that.setData({
+          [k]: file
+        })
       }
     })
-    // var index = e.currentTarget.dataset.index;
-    // var evalList = this.data.evalList;
-    // var that = this;
-    // var imgNumber = evalList[index].tempFilePaths;
-    // if (imgNumber.length >= 1) {
-    //   wx.showModal({
-    //     title: '',
-    //     content: '最多上传1张图片',
-    //     showCancel: false,
-    //   })
-    //   return;
-    // }
-  //   wx.showActionSheet({
-  //     itemList: ["从相册中选择", "拍照"],
-  //     itemColor: "#f7982a",
-  //     success: function (res) {
-  //       if (!res.cancel) {
-  //         if (res.tapIndex == 0) {
-  //           that.chooseWxImage("album", imgNumber);
-  //         } else if (res.tapIndex == 1) {
-  //           that.chooseWxImage("camera", imgNumber);
-  //         }
-  //       }
-  //     }
-  //   })
-  // },
-  // chooseWxImage: function (type, list) {
-  //   var img = list;
-  //   var len = img.length;
-  //   var that = this;
-  //   var evalList = this.data.evalList;
-  //   wx.chooseImage({
-  //     count: 3,
-  //     sizeType: ["original", "compressed"],
-  //     sourceType: [type],
-  //     success: function (res) {
-  //       var addImg = res.tempFilePaths;
-  //       var addLen = addImg.length;
-  //       if ((len + addLen) > 3) {
-  //         for (var i = 0; i < (addLen - len); i++) {
-  //           var str = {};
-  //           str.pic = addImg[i];
-  //           img.push(str);
-  //         }
-  //       } else {
-  //         for (var j = 0; j < addLen; j++) {
-  //           var str = {};
-  //           str.pic = addImg[j];
-  //           img.push(str);
-  //         }
-  //       }
-  //       that.setData({
-  //         evalList: evalList
-  //       })
-  //       that.upLoadImg(img);
-  //     },
-  //   })
-  // },
-  // upLoadImg: function (list) {
-  //   var that = this;
-  //   this.upload(that, list);
-  // },
-  // //多张图片上传
-  // upload: function (page, path) {
-  //   var that = this;
-  //   var curImgList = [];
-  //   for (var i = 0; i < path.length; i++) {
-  //     wx.showToast({
-  //       icon: "loading",
-  //       title: "正在上传"
-  //     }),
-  //       wx.uploadFile({
-  //         url: app.globalData.subDomain + '/API/AppletApi.aspx',//接口处理在下面有写
-  //         filePath: path[i].pic,
-  //         name: 'file',
-  //         header: { "Content-Type": "multipart/form-data" },
-  //         formData: {
-  //           douploadpic: '1'
-  //         },
-  //         success: function (res) {
-  //           curImgList.push(res.data);
-  //           var evalList = that.data.evalList;
-  //           evalList[0].imgList = curImgList;
-  //           that.setData({
-  //             evalList: evalList
-  //           })
-  //           if (res.statusCode != 200) {
-  //             wx.showModal({
-  //               title: '提示',
-  //               content: '上传失败',
-  //               showCancel: false
-  //             })
-  //             return;
-  //           }
-  //           var data = res.data
-  //           page.setData({  //上传成功修改显示头像
-  //             src: path[0]
-  //           })
-  //         },
-  //         fail: function (e) {
-  //           wx.showModal({
-  //             title: '提示',
-  //             content: '上传失败',
-  //             showCancel: false
-  //           })
-  //         },
-  //         complete: function () {
-  //           wx.hideToast();  //隐藏Toast
-  //         }
-  //       })
-  //   }
-  // },
-  // //删除图片
-  // clearImg: function (e) {
-  //   var index = e.currentTarget.dataset.index;
-  //   var evalList = this.data.evalList;
-  //   var img = evalList[0].tempFilePaths;
-  //   img.splice(index, 1);
-  //   this.setData({
-  //     evalList: evalList
-  //   })
-  //   this.upLoadImg(img);
   },
+
+/**
+ * 保存
+ */
+  save:function(){
+    var that = this
+    var pic = this.data.pic
+    var vehiclename = this.data.vehiclename
+    var vehiclephone = this.data.vehiclephone
+    var vehiclebulk = this.data.vehiclebulk
+    var vehiclecarrying = this.data.vehiclecarrying
+    if (!vehiclename || !vehiclephone || !vehiclebulk || !vehiclecarrying || !pic['0'] || !pic['1'] || !pic['2'] || !pic['3']){
+        wx.showToast({
+          title: '不能为空',
+          duration: 2000,
+          icon: "none"
+        })
+        return false
+      }
+    common.uploadimg({
+      path:pic,
+      that:this,
+      url: URL + 'login/reg'
+     //url:'http://www.zs.com/test/index/'
+    })
+  }
+ 
 })
