@@ -6,17 +6,20 @@
     <view class="{{selected1?'red':'default'}}" bindtap="selected1">接收订单</view>
     <view class="{{selected2?'red':'default'}}" bindtap="selected2">完结订单</view>
   </view>
+<block wx:for="{{quanbu}}" wx:for-item="item" wx:key="index" >
  <view class="color">
- 
  <view class="gear">
-<span class="gear_add">{{gear}}</span>
-<span class="gear_add">{{dizhi}}</span>
-<span class="gear_add">任务类型:{{leixing}}</span>
-<span class="gear_add">联系人姓名:{{name}}</span>
-<span class="gear_add">联系人电话:{{open}}</span>
-<span class="gear_add">所选车型:{{car}}</span>
-<span class="gear_add">结算金额: ¥{{money}}</span>
+<span class="gear_add">订单编号: {{item.order_id}}</span>
+<span class="gear_add">地址: {{item.user_terminus}}</span>
+<span class="gear_add">任务类型:{{item.delivery}}</span>
+<span class="gear_add">联系人姓名:{{item.party_name}}</span>
+<span class="gear_add">联系人电话:{{item.party_phone}}</span>
+<span class="gear_add">所选车型:{{item.vehicle}}</span>
+<span class="gear_add">结算金额: ¥{{item.user_money}}</span>
+
+<view class='finish'>订单已完结</view>
+
 </view>
- 
  </view>
+</block>
 </view>

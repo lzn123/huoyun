@@ -1,6 +1,6 @@
 {
   "pages":[
-    "pages/car/index",
+   
     "pages/index/index",
     "pages/logs/logs",
     "pages/advices/advices",
@@ -18,7 +18,7 @@
     "pages/kefu/index",
     "pages/shezi/index",
     "pages/xuqiou/index",
-    
+    "pages/car/index",
     "pages/xiaoxi/index",
     "pages/guanli/index",
     "pages/userdingdan/index",

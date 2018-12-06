@@ -28,7 +28,16 @@
 .color{
  background-color: rgb(244,244,244);
  height: 1219rpx;
- 
+ /* text-align:  */
 }
+.finish{
+  color: #fff;
+  background-color: rgb(236, 168, 86);
+  margin-top: 22rpx;
+  margin-left: 472rpx;
+  border-radius:14rpx;
+  text-align: right;
 
+  
+}
 /* pages/carwanjie/index.wxss */

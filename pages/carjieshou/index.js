@@ -39,6 +39,10 @@ Page({
     })
   },
   sus_book:function(e){
+    wx.showToast({
+      title: '请求中',
+      icon: 'loading',
+    });
     var that = this
     var id = e.currentTarget.dataset.id
     wx.request({
@@ -67,6 +71,10 @@ Page({
         }
       }
     })
+    wx.showToast({
+      title: '你暂无数据',
+      icon: 'loading',
+    });
   },
   /**
    * 生命周期函数--监听页面加载
@@ -79,6 +87,10 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    wx.showToast({
+      title: '请求中',
+      icon: 'loading',
+    });
     var that = this
     //var id = this.data.id
     wx.request({

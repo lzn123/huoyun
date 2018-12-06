@@ -8,11 +8,9 @@ Page({
     destination: '目的地',
     jiner:'45',
     scale: 14,
+    addtel: '',
     hiddenLoading: false,
     imageWidth: wx.getSystemInfoSync().windowWidth
-    // tempFilePaths: '/images/xiaoqiche.png',
-    // qiche:'/images/qiche.png',
-    //  dahuoche:'/images/dahuoche.png',
   },
   indexcar: function (e) {
     console.log(e)
@@ -64,55 +62,137 @@ Page({
       vehicle: app.globalData.userInfo.vehicle
     })
   },
+  //登入控制器
   login:function(){
-    var header = getApp().globalData.Session; //必须带上这一句
-    // wx.navigateTo({
-    //   url: "../login/index",
-    // })
-    wx.request({
-      url: 'https://g.hbyingluo.com/userindex.php', //仅为示例，并非真实的接口地址
-      // http://kongdechang.com/
-      method: "POST",
-      data: {
-        //qidian: params.qidian,
-        //zhongdian: params.zhongdian,
-      },
-      header: {
-        'content-type': 'application/x-www-form-urlencoded' // 默认值
-      },
+   
+    // var car = this;
+    // var user = this;
+    wx.getStorage({
+      key: 'car',
       success: function (res) {
-        console.log(res)
-
-        if (res == 1) {
+        console.log(res.data.account)
+        if (res.data.account == ""){
           wx.navigateTo({
-            url: '../personal/index',
-          })
+          url: "../login/index",
+        })
         }else{
           wx.navigateTo({
-            url: '../login/index',
-          })  
-      } 
+            url: "../car/index",
+          })
+        }
       }
-      })
-  },
-  nser:function(){
-    wx.navigateTo({
-      url: '../advices/advices',
+    })
+      wx.getStorage({
+      key: 'user',
+      success: function (res) {
+        console.log(res.data.account)
+        if (res.data.account == "") {
+          wx.navigateTo({
+            url: "../login/index",
+          })
+        } else {
+          wx.navigateTo({
+            url: "../personal/index",
+          })
+        }
+      },
+      fail:function(){
+        wx.navigateTo({
+          url: "../login/index",
+        })
+      }
     })
   },
+  //用户消息控制器
+  nser:function(){
+    wx.getStorage({
+      key: 'car',
+      success: function (res) {
+        console.log(res.data.account)
+        if (res.data.account == "") {
+          wx.showToast({
+            title: '请登入',
+            duration: 2000,
+            icon: "none"
+          })
+        } else {
+          wx.navigateTo({
+            url: '../advices/advices',
+          })
+          // wx.showToast({
+          //   title: '请登入',
+          //   duration: 2000,
+          //   icon: "none"
+          // })
+        }
+      }
+    })
+    wx.getStorage({
+      key: 'user',
+      success: function (res) {
+        console.log(res.data.account)
+        if (res.data.account == "") {
+          wx.showToast({
+            title: '请登入',
+            duration: 2000,
+            icon: "none"
+          })
+        } else {
+          wx.navigateTo({
+            url: '../advices/advices',
+          })
+        }
+      },
+    })
+  },
+  //底部用车控制器
   yongche: function (e){
     var that = this
-    var viewId = e.target.id; 
-    var viewDataSet = e.target.dataset; 
-    var viewText = viewDataSet.text; 
+    var viewId = e.target.id;
+    var viewDataSet = e.target.dataset;
+    var viewText = viewDataSet.text;
 
-/**地址*/
+    /**地址*/
     var departure = that.data.departure
     var destination = that.data.destination
-
-    console.log(viewId);
-    wx.navigateTo({
+    wx.getStorage({
+      key: 'car',
+      success: function (res) {
+        console.log(res.data.account)
+        if (res.data.account == "") {
+          wx.showToast({
+            title: '请登入',
+            duration: 2000,
+            icon: "none"
+          })
+        } else {
+          wx.navigateTo({
       url: '../xuqiou/index?departure=' + departure + '&destination=' + destination,
+          })
+          // wx.showToast({
+          //   title: '请登入',
+          //   duration: 2000,
+          //   icon: "none"
+          // })
+        }
+      }
+    })
+    wx.getStorage({
+      key: 'user',
+      success: function (res) {
+        console.log(res.data.account)
+        if (res.data.account == "") {
+          wx.showToast({
+            title: '请登入',
+            duration: 2000,
+            icon: "none"
+          })
+        } else {
+          wx.navigateTo({
+      url: '../xuqiou/index?departure=' + departure + '&destination=' + destination,
+          })
+        }
+      },
     })
   },
 
@@ -227,6 +307,11 @@ Page({
   },
   onReady() {
 
+  },
+  onShow: function () {
+    // wx.navigateTo({
+    //   url: "../login/index",
+    // })
   },
   movetoPosition: function () {
     this.mapCtx.moveToLocation();

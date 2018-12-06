@@ -27,6 +27,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showToast({
+      title: '请求中',
+      icon: 'loading',
+    });
     var that = this
     wx.request({
       url: URL + 'Desired/push',

@@ -1,4 +1,7 @@
 // pages/jifen/index.js
+var util = require("../../utils/util.js");
+const app = getApp()
+const URL = app.globalData.url
 Page({
 
   /**
@@ -8,14 +11,14 @@ Page({
     selected: false,
     selected1: false,
     selected2: true,
-    day: '2018-01-01   12:00',
-    gear: '订单编号: 15482648547',
-    dizhi: '石家庄市桥西区新胜利大街塔坛国际5号写字楼至桥西区宫家庄学生公寓',
-    leixing: '搬家',
-    name: '李某某',
-    open: '12321414141',
-    car: '面包车',
-    money: '100'
+   // day: '2018-01-01   12:00',
+    // gear: '订单编号: 15482648547',
+    // dizhi: '石家庄市桥西区新胜利大街塔坛国际5号写字楼至桥西区宫家庄学生公寓',
+    // leixing: '搬家',
+    // name: '李某某',
+    // open: '12321414141',
+    // car: '面包车',
+    // money: '100'
 
   },
   selected: function (e) {
@@ -38,8 +41,24 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: function () {
+    wx.showToast({
+      title: '请求中',
+      icon: 'loading',
+    });
+    var that = this
+    wx.request({
+      url: URL + 'Desired/finish',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        console.log(res.data)
+        that.setData({
+          quanbu:res.data,
+        })
+      }
+    })
   },
 
   /**

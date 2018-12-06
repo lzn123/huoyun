@@ -60,6 +60,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (e) {
+    wx.showToast({
+      title: '请求中',
+      icon: 'loading',
+    });
     var that = this 
     var id = this.data.id
     wx.request({

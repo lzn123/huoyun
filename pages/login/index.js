@@ -37,18 +37,6 @@ Page({
           duration: 2000,
           icon: "none"
         })
-        // save: function(e) {
-        //   console.log('开始保存')
-        //   wx.setStorage({
-        //     key: 'key1',
-        //     data: 'data1',
-        //     success: function (res) {
-        //       console.log('异步保存成功')
-        //     }
-        //   })
-        //   wx.setStorageSync('key2', 'data2')
-        //   console.log('同步保存成功')
-        // }
         if (res.data.status != 200 && res.data.status != 201) {
           return false
         }
@@ -57,14 +45,18 @@ Page({
             wx.navigateTo({
               url: '../index/index',
             })
+            //登入成功之后保存本地客户信息
             wx.setStorage({
-            key: 'key1',
-              data:  'account:username',
+            key: 'user',
+              data: {
+                account: username,
+                pwd: password, 
+              },
             success: function (res) {
               console.log('异步保存成功')
             }
           })
-          //   wx.setStorageSync('key2', 'data2')
+          //   wx.setStorageSync('user', 'data2')
           // console.log('同步保存成功')
           }
           if (res.data.status == 201){
@@ -72,14 +64,18 @@ Page({
             wx.navigateTo({
               url: '../car/index',
             })
+           // 登入成功之后保存司机的登入信息
             wx.setStorage({
-              key: 'key2',
-              data: account.username,
+              key: 'car',
+              data: {
+                account: username,
+                pwd: password, 
+              },
               success: function (res) {
                 console.log('异步保存成功')
               }
             })
-            // wx.setStorageSync('key2', 'data2')
+            // wx.setStorageSync('car', 'data2')
             // console.log('同步保存成功')
           }
       },
