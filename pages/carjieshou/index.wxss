@@ -30,3 +30,11 @@
  background-color: rgb(244,244,244);
  height: 1219rpx;
 }
+.sus_book{
+color:#fff;
+margin-top:37rpx;
+margin-left:520rpx;
+background-color:rgb(236,168,86);
+border-radius:10rpx;
+
+}

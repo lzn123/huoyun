@@ -18,8 +18,9 @@
 <span class="gear_add">联系人电话:{{item.party_phone}}</span>
 <span class="gear_add">所选车型:{{item.vehicle}}</span>
 <span class="gear_add">结算金额: ¥{{item.user_money}}</span>
+      <view class='sus_book' bindtap='sus_book' data-id="{{item.id}}">完成订单</view>
 </view>
- 
+   
  </view>
  </block>
 </view>

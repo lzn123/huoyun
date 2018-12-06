@@ -2,11 +2,16 @@
 <!-- <text>pages/jifen/index.wxml</text> -->
 <view class='content'>
 
- <view class='liti'>
- <text class='jifen'>我的积分:</text>
+ <view>
+ <cover-image src='../../images/jifen-back.png' class='liti'> </cover-image>
+ <cover-view class='jifen'>我的积分:</cover-view>
+
+
+   <cover-view class='jifen1'>{{motto}}积分</cover-view>
  <view calss="jifen1">
- <text>{{motto}}积分</text>
+
  </view>
+
  </view>
   <view class="section" bindtap=''>
     <text class='text2'>积分明细</text>

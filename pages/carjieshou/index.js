@@ -38,6 +38,36 @@ Page({
       url: '../carwanjie/index',
     })
   },
+  sus_book:function(e){
+    var that = this
+    var id = e.currentTarget.dataset.id
+    wx.request({
+      url: URL + 'Desired/achieve',
+      data: {
+        id: id
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        console.log(res.data);
+        if (res.data.status == 200) {
+          wx.showToast({
+            title: '完成订单成功',
+            duration: 2000,
+            icon: "none"
+          })
+        }
+        if (res.data.status == 105) {
+          wx.showToast({
+            title: '完成订单接收失败',
+            duration: 2000,
+            icon: "none"
+          })
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
