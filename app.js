@@ -1,10 +1,27 @@
 //app.js
 App({
   onLaunch: function () {
+    var that = this
     //调用API从本地缓存中获取数据
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+    //获取司机缓存
+    wx.getStorage({
+      key: 'car',
+      success: function (res) {
+        console.log(res.data);
+        if(res.data){
+          that.globalData.car = res.data
+        }
+      }
+    })
+    //获取用户缓存
+    wx.getStorage({
+      key: 'user',
+      success: function (res) {
+        if (res.data) {
+          that.globalData.user = res.data
+        }
+      }
+    })
   },
   getUserInfo:function(cb){
     var that = this
@@ -27,6 +44,8 @@ App({
   globalData:{
     url:'https://g.hbyingluo.com/api/',
     header:{'Session': ''},
+    user:'',
+    car:''
   }
 })
 

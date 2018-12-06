@@ -159,6 +159,7 @@ function showToast(val) {
     icon: "none"
   })
 }
+    var uid = app.globalData.user.id
 wx.request({
   url: URL + 'Desired/add',
   method: "POST",
@@ -174,13 +175,14 @@ wx.request({
     tiji: params.tiji,//体积
     zhongliang: params.zhongliang,//重量
     beizhu:params.beizhu,//备注
+    uid: uid
   },
   header: {
     'content-type': 'application/x-www-form-urlencoded' // 默认值
   },
 
   success: function (res) {
-    console.log(res.data.status)
+   
     //getApp().globalData.header.Session = 'JSESSIONID=' + res.data.sessionId;  //这一句很重要。
     // getApp().globalData.Session = res.data.sessionId;
     // if (res.data.status == 1) {

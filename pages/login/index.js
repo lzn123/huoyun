@@ -31,7 +31,7 @@ Page({
       },
       method: 'post', 
       success: function (res) {
-        console.log(res.data.status);
+
         wx.showToast({
           title: res.data.info,
           duration: 2000,
@@ -41,6 +41,12 @@ Page({
           return false
         }
           if (res.data.status == 200) {
+            app.globalData.user = [
+              {
+                id: res.data.data.id,
+                account: res.data.data.account,
+              },
+            ]
             console.log('开始保存')  
             wx.navigateTo({
               url: '../index/index',
@@ -49,8 +55,8 @@ Page({
             wx.setStorage({
             key: 'user',
               data: {
-                account: username,
-                pwd: password, 
+                id: res.data.data.id,
+                account: res.data.data.account, 
               },
             success: function (res) {
               console.log('异步保存成功')
@@ -61,19 +67,25 @@ Page({
           }
           if (res.data.status == 201){
             console.log('开始保存')  
-            wx.navigateTo({
-              url: '../car/index',
-            })
+            app.globalData.car = [
+              {
+                id: res.data.data.id,
+                account: res.data.data.account,
+              },
+            ]
            // 登入成功之后保存司机的登入信息
             wx.setStorage({
               key: 'car',
               data: {
-                account: username,
-                pwd: password, 
+                id: res.data.data.id,
+                account: res.data.data.account,
               },
               success: function (res) {
                 console.log('异步保存成功')
               }
+            })
+            wx.navigateTo({
+              url: '../car/index',
             })
             // wx.setStorageSync('car', 'data2')
             // console.log('同步保存成功')

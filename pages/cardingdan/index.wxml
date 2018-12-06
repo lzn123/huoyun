@@ -1,0 +1,77 @@
+<!--pages/carjieshou/index.wxml-->
+<!-- <text>pages/carjieshou/index.wxml</text> -->
+<view>
+
+  <view class="nav bc_white">
+  
+    <view class="{{currentTab==0?'red':'default'}}" data-current="0" bindtap="selected">全部订单</view>
+  
+    <view class="{{currentTab==1?'red':'default'}}" data-current="1" bindtap="selected">接收订单</view>
+    <view class="{{currentTab==2?'red':'default'}}" data-current="2" bindtap="selected">完结订单</view>
+    </view>
+
+  <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab" style="height:{{winHeight}}rpx">
+    <swiper-item>
+      <scroll-view scroll-y="true" class="scoll-h">
+        <block wx:for="{{jieshou}}" wx:for-item="item" wx:key="index">
+          <view class="color">
+            <view class="gear">
+              <span class="gear_add">订单编号: {{item.order_id}}</span>
+              <span class="gear_add">地址: {{item.user_terminus}}</span>
+              <span class="gear_add">任务类型: {{item.delivery}}</span>
+              <span class="gear_add">联系人姓名: {{item.party_name}}</span>
+              <span class="gear_add">联系人电话:{{item.party_phone}}</span>
+              <span class="gear_add">所选车型:{{item.vehicle}}</span>
+              <span class="gear_add">结算金额: ¥{{item.user_money}}</span>
+              <view class='sus_book' bindtap='sus_book' data-id="{{item.id}}">完成订单</view>
+            </view>
+
+          </view>
+        </block>
+      </scroll-view>
+    </swiper-item>
+    <swiper-item>
+      <scroll-view scroll-y="true" class="scoll-h">
+        <block wx:for="{{jieshou}}" wx:for-item="item" wx:key="index">
+          <view class="color" wx:if="{{item.status == 3}}">
+            <view class="gear">
+              <span class="gear_add">订单编号: {{item.order_id}}</span>
+              <span class="gear_add">地址: {{item.user_terminus}}</span>
+              <span class="gear_add">任务类型: {{item.delivery}}</span>
+              <span class="gear_add">联系人姓名: {{item.party_name}}</span>
+              <span class="gear_add">联系人电话:{{item.party_phone}}</span>
+              <span class="gear_add">所选车型:{{item.vehicle}}</span>
+              <span class="gear_add">结算金额: ¥{{item.user_money}}</span>
+              <view class='sus_book' bindtap='sus_book' data-id="{{item.id}}">完成订单</view>
+            </view>
+
+          </view>
+        </block>
+      </scroll-view>
+    </swiper-item>
+
+    <swiper-item>
+      <scroll-view scroll-y="true" class="scoll-h">
+        <block wx:for="{{jieshou}}" wx:for-item="item" wx:key="index">
+          <view class="color" wx:if="{{item.status == 4}}">
+            <view class="gear">
+              <span class="gear_add">订单编号: {{item.order_id}}</span>
+              <span class="gear_add">地址: {{item.user_terminus}}</span>
+              <span class="gear_add">任务类型: {{item.delivery}}</span>
+              <span class="gear_add">联系人姓名: {{item.party_name}}</span>
+              <span class="gear_add">联系人电话:{{item.party_phone}}</span>
+              <span class="gear_add">所选车型:{{item.vehicle}}</span>
+              <span class="gear_add">结算金额: ¥{{item.user_money}}</span>
+              <view class='sus_book' bindtap='sus_book' data-id="{{item.id}}">完成订单</view>
+            </view>
+
+          </view>
+        </block>
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+
+
+
+
+</view>
