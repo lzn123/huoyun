@@ -181,22 +181,15 @@ wx.request({
     tiji: params.tiji,//体积
     zhongliang: params.zhongliang,//重量
     beizhu:params.beizhu,//备注
-<<<<<<< HEAD
-    uid: uid//用户id
-=======
-    uid: uid
->>>>>>> 5a707e17364214e8d3ffefc93d6f7531d91b1954
+    uid: uid,//用户id
   },
   header: {
     'content-type': 'application/x-www-form-urlencoded' // 默认值
   },
 
   success: function (res) {
-<<<<<<< HEAD
+
   console.log(res.data);
-=======
-   
->>>>>>> 5a707e17364214e8d3ffefc93d6f7531d91b1954
     //getApp().globalData.header.Session = 'JSESSIONID=' + res.data.sessionId;  //这一句很重要。
     // getApp().globalData.Session = res.data.sessionId;
     // if (res.data.status == 1) {

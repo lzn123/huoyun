@@ -15,35 +15,33 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-<<<<<<< HEAD
     wx.showToast({
       title: '请求中',
       icon: 'loading',
-    }); 
-    wx.getStorage({
-      key: 'car',
-      success: function (res) {
-        console.log(res.data)
-      }
-      })
-=======
->>>>>>> 5a707e17364214e8d3ffefc93d6f7531d91b1954
-    var that = this
-    var car_id = app.globalData.car.id
+    });
+    // wx.getStorageSync({
+    //   // key: 'car',
+    //   // success: function (res) {
+    //   //   console.log(res.data)
+    //   // }
+      
+    // })
+    try {
+      var car_id = wx.getStorageSync('car')
+      if (car_id) {
+        var that = this
+        //var car_id = app.globalData.car.id
     wx.request({
       url: URL + 'Desired/dingdan',
       data: {
-        did: car_id
+        did: car_id.id
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
-<<<<<<< HEAD
         //console.log(res.data);
-=======
         console.log(res.data);
->>>>>>> 5a707e17364214e8d3ffefc93d6f7531d91b1954
         if (res.data.status == 200) {
           wx.showToast({
             title: '完成订单成功',
@@ -51,7 +49,7 @@ Page({
             icon: "none"
           })
           that.setData({
-            jieshou : res.data.data
+            jieshou: res.data.data
           })
         }
         if (res.data.status == 105) {
@@ -61,6 +59,58 @@ Page({
             icon: "none"
           })
         }
+      }
+    })
+      }
+    } catch (e) {
+      // Do something when catch error
+    }
+    // var that = this
+    // var car_id = app.globalData.car.id
+    // wx.request({
+    //   url: URL + 'Desired/dingdan',
+    //   data: {
+    //     did: car_id
+    //   },
+    //   header: {
+    //     'content-type': 'application/x-www-form-urlencoded'
+    //   },
+    //   success: function (res) {
+    //     //console.log(res.data);
+    //     console.log(res.data);
+    //     if (res.data.status == 200) {
+    //       wx.showToast({
+    //         title: '完成订单成功',
+    //         duration: 2000,
+    //         icon: "none"
+    //       })
+    //       that.setData({
+    //         jieshou: res.data.data
+    //       })
+    //     }
+    //     if (res.data.status == 105) {
+    //       wx.showToast({
+    //         title: '完成订单接收失败',
+    //         duration: 2000,
+    //         icon: "none"
+    //       })
+    //     }
+    //   }
+    // })
+  },
+  onShow: function () {
+    wx.getStorage({
+      key: 'car',
+      success: function (res) {
+        console.log(res.data)
+      }
+    })
+  },
+  onReady: function () {
+    wx.getStorage({
+      key: 'car',
+      success: function (res) {
+        console.log(res.data)
       }
     })
   },

@@ -64,44 +64,107 @@ Page({
   },
   //登入控制器
   login:function(){
-   
+    var user_type = wx.getStorageSync('user_type')
+    try{
+      if(user_type){
+        console.log(user_type)
+        if(user_type == 1){
+          console.log('用户')
+          try {
+            var car = wx.getStorageSync('car')
+            if (car) {
+              // Do something with return value
+              console.log('car1')
+              wx.navigateTo({
+                url: "../car/index",
+              })
+              //return false;
+            } else {
+              console.log('car2')
+              wx.navigateTo({
+                url: "../login/index",
+              })
+              //return false;
+            }
+          } catch (e) {
+            // Do something when catch error
+          }
+        }
+        if (user_type == 2) {
+          console.log('司机')
+          try {
+            var user = wx.getStorageSync('user')
+            if (user) {
+              // Do something with return value
+              console.log('user1')
+              wx.navigateTo({
+                url: "../personal/index",
+              })
+              //return false;
+            } else {
+              console.log('user2')
+              wx.navigateTo({
+                url: "../login/index",
+              })
+              //return false;
+            }
+          } catch (e) {
+            // Do something when catch error
+          }
+        }
+      }else{
+        console.log('用户类型不存在')
+            wx.navigateTo({
+           url: "../login/index",
+         })
+      }
+    }catch(e){
+      /////
+    }
     // var car = this;
     // var user = this;
-    wx.getStorage({
-      key: 'car',
-      success: function (res) {
-        console.log(res.data.account)
-        if (res.data.account == ""){
-          wx.navigateTo({
-          url: "../login/index",
-        })
-        }else{
-          wx.navigateTo({
-            url: "../car/index",
-          })
-        }
-      }
-    })
-      wx.getStorage({
-      key: 'user',
-      success: function (res) {
-        console.log(res.data.account)
-        if (res.data.account == "") {
-          wx.navigateTo({
-            url: "../login/index",
-          })
-        } else {
-          wx.navigateTo({
-            url: "../personal/index",
-          })
-        }
-      },
-      fail:function(){
-        wx.navigateTo({
-          url: "../login/index",
-        })
-      }
-    })
+    // wx.getStorage({
+    //   key: 'car',
+    //   success: function (res) {
+    //     console.log(res)
+    //     if (res.data.account == ""){
+    //       wx.navigateTo({
+    //       url: "../login/index",
+    //     })
+    //     }else{
+    //       wx.navigateTo({
+    //         url: "../car/index",
+    //       })
+    //     }
+    //   }
+    // })
+
+//-----------
+
+
+
+
+    ////////////////////////////////////
+    // wx.getStorage({
+    //   key: 'user',
+    //   success: function (res) {
+    //     console.log(res.data.account)
+    //     if (res.data.account == "") {
+    //       wx.navigateTo({
+    //         url: "../login/index",
+    //       })
+    //     } else {
+    //       wx.navigateTo({
+    //         url: "../personal/index",
+    //       })
+    //     }
+    //   },
+    //   fail:function(){
+    //     wx.navigateTo({
+    //       url: "../login/index",
+    //     })
+    //   }
+    // })
   },
   //用户消息控制器
   nser:function(){

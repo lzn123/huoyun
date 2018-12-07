@@ -1,9 +1,5 @@
 {
   "pages": [
-<<<<<<< HEAD
-    
-=======
->>>>>>> 5a707e17364214e8d3ffefc93d6f7531d91b1954
     "pages/index/index",
     "pages/logs/logs",
     "pages/advices/advices",
@@ -35,16 +31,8 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-<<<<<<< HEAD
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "同城货滴",
-    "navigationBarTextStyle": "black",
-    "backgroundColor": "#000"
-
-=======
     "navigationBarBackgroundColor": "rgb(255,255,255)",
     "navigationBarTitleText": "同城货滴",
     "navigationBarTextStyle": "black"
->>>>>>> 5a707e17364214e8d3ffefc93d6f7531d91b1954
   }
 }

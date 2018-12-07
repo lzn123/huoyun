@@ -52,8 +52,12 @@ Page({
               url: '../index/index',
             })
             //登入成功之后保存本地客户信息
+
+            wx.setStorageSync('user', { id: res.data.data.id, account: res.data.data.account ,user_type:1})
+            console.log('同步保存成功')
+            wx.setStorageSync('user_type',{type:2})
             wx.setStorage({
-            key: 'user',
+            key: 'user1',
               data: {
                 id: res.data.data.id,
                 account: res.data.data.account, 
@@ -63,7 +67,12 @@ Page({
             }
           })
           //   wx.setStorageSync('user', 'data2')
+            //wx.setStorage('user_type',{type:2})
           // console.log('同步保存成功')
+            wx.setStorage({
+              key: 'user_type',
+              data: 2
+            })
           }
           if (res.data.status == 201){
             console.log('开始保存')  
@@ -74,9 +83,16 @@ Page({
               },
             ]
            // 登入成功之后保存司机的登入信息
+            wx.setStorageSync('car', { id: res.data.data.id, account: res.data.data.account})
+            //yonghuleixing
+            wx.setStorageSync('user_type',{type:1})
+            console.log('同步保存成功')
+
+            
             wx.setStorage({
-              key: 'car',
+              key: 'car1',
               data: {
+              
                 id: res.data.data.id,
                 account: res.data.data.account,
               },
@@ -84,11 +100,15 @@ Page({
                 console.log('异步保存成功')
               }
             })
+            //wx.setStorage('user_type',{type:1})
+            wx.setStorage({
+              key: 'user_type',
+              data: 1 
+            })
             wx.navigateTo({
               url: '../car/index',
             })
-            // wx.setStorageSync('car', 'data2')
-            // console.log('同步保存成功')
+           
           }
       },
       fail: function () {

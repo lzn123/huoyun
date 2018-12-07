@@ -19,43 +19,46 @@ Page({
       title: '请求中',
       icon: 'loading',
     });
-    wx.getStorage({
-      key: 'user',
-      success: function (res) {
-        console.log(res.data)
+    try {
+      var user_id = wx.getStorageSync('user')
+      if (user_id) {
+        var that = this
+        //var car_id = app.globalData.car.id
+        wx.request({
+          url: URL + 'User/dingdan',
+          data: {
+            uid: user_id.id
+          },
+          header: {
+            'content-type': 'application/x-www-form-urlencoded'
+          },
+          success: function (res) {
+            //console.log(res.data);
+            console.log(res.data);
+            if (res.data.status == 200) {
+              wx.showToast({
+                title: '完成订单成功',
+                duration: 2000,
+                icon: "none"
+              })
+              that.setData({
+                jieshou: res.data.data
+              })
+            }
+            if (res.data.status == 105) {
+              wx.showToast({
+                title: '完成订单接收失败',
+                duration: 2000,
+                icon: "none"
+              })
+            }
+          }
+        })
       }
-    })
-    var that = this
-    var user_id = app.globalData.user.id
-    wx.request({
-      url: URL + 'User/dingdan',
-      data: {
-        uid: user_id
-      },
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        console.log(res.data);
-        if (res.data.status == 200) {
-          wx.showToast({
-            title: '完成订单成功',
-            duration: 2000,
-            icon: "none"
-          })
-          that.setData({
-            jieshou: res.data.data
-          })
-        }
-        if (res.data.status == 105) {
-          wx.showToast({
-            title: '完成订单接收失败',
-            duration: 2000,
-            icon: "none"
-          })
-        }
-      }
-    })
+    } catch (e) {
+      // Do something when catch error
+    }
+
   },
   selected: function (e) {
     var cur = e.target.dataset.current;
