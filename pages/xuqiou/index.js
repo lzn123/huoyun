@@ -49,6 +49,12 @@ Page({
 
   },
   formSubmit:function(e){
+    wx.getStorage({
+      key: 'user',
+      success: function (res) {
+        console.log(res.data);
+        }
+      })
     let photo = /^1[345768]{1}\d{9}$/;
     let photo1 = /^1[345768]{1}\d{9}$/;
     let params = e.detail.value;
@@ -159,6 +165,7 @@ function showToast(val) {
     icon: "none"
   })
 }
+    var uid = app.globalData.user.id
 wx.request({
   url: URL + 'Desired/add',
   method: "POST",
@@ -174,13 +181,14 @@ wx.request({
     tiji: params.tiji,//体积
     zhongliang: params.zhongliang,//重量
     beizhu:params.beizhu,//备注
+    uid: uid//用户id
   },
   header: {
     'content-type': 'application/x-www-form-urlencoded' // 默认值
   },
 
   success: function (res) {
-    console.log(res.data.status)
+  console.log(res.data);
     //getApp().globalData.header.Session = 'JSESSIONID=' + res.data.sessionId;  //这一句很重要。
     // getApp().globalData.Session = res.data.sessionId;
     // if (res.data.status == 1) {
@@ -192,13 +200,13 @@ wx.request({
       return false
     }
     if (res.data.status == 200) {
-      // wx.navigateTo({
-      //   url: '../advices/advices',
-      // })
       wx.showToast({
         title: '发布成功',
         duration: 2000,
         icon: "none"
+      })
+      wx.navigateTo({
+        url: '../userdingdan/index',
       })
     }else{
       wx.showToast({

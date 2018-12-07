@@ -5,11 +5,11 @@ Page({
     username: '',
   },
   onLoad: function (option) {
-    // 页面初始化 options为页面跳转所带来的参数
-    var param = JSON.parse(option.param);
-    this.setData({
-      username: param.username
-    });
+    // // 页面初始化 options为页面跳转所带来的参数
+    // var param = JSON.parse(option.param);
+    // this.setData({
+    //   username: param.username
+    // });
      
   },
   dingdan:function(){

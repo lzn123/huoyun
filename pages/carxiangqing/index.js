@@ -43,7 +43,7 @@ Page({
             icon: "none"
           })
           wx.navigateTo({
-            url: '../carjieshou/index',
+            url: '../cardingdan/index',
           })
         }
         if (res.data.status == 105){
@@ -82,7 +82,45 @@ Page({
       }
     })
   },
-
+//司机取消订单控制器
+  abolish:function(e){
+    wx.showToast({
+      title: '请求中',
+      icon: 'loading',
+    });
+    var that = this
+    var id = e.currentTarget.dataset.id
+    console.log(id)
+    wx.request({
+      url: URL + 'Desired/abolish',
+      data: {
+        id:id
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        console.log(res.data)
+        if (res.data.status == 200) {
+          wx.showToast({
+            title: '取消订单接收成功',
+            duration: 2000,
+            icon: "none"
+          })
+          wx.navigateTo({
+            url: '../cardingdan/index',
+          })
+        }
+        if (res.data.status == 105) {
+          wx.showToast({
+            title: '取消订单接收失败',
+            duration: 2000,
+            icon: "none"
+          })
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

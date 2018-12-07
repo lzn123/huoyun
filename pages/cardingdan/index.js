@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    currentTab: 0
+    currentTab:0
   },
 
   /**
@@ -18,25 +18,25 @@ Page({
     wx.showToast({
       title: '请求中',
       icon: 'loading',
-    });
+    }); 
     wx.getStorage({
-      key: 'user',
+      key: 'car',
       success: function (res) {
         console.log(res.data)
       }
-    })
+      })
     var that = this
-    var user_id = app.globalData.user.id
+    var car_id = app.globalData.car.id
     wx.request({
-      url: URL + 'User/dingdan',
+      url: URL + 'Desired/dingdan',
       data: {
-        uid: user_id
+        did: car_id
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
-        console.log(res.data);
+        //console.log(res.data);
         if (res.data.status == 200) {
           wx.showToast({
             title: '完成订单成功',
@@ -44,7 +44,7 @@ Page({
             icon: "none"
           })
           that.setData({
-            jieshou: res.data.data
+            jieshou : res.data.data
           })
         }
         if (res.data.status == 105) {
@@ -57,7 +57,7 @@ Page({
       }
     })
   },
-  selected: function (e) {
+  selected:function(e){
     var cur = e.target.dataset.current;
     if (this.data.currentTaB == cur) { return false; }
     else {
@@ -68,7 +68,7 @@ Page({
 
   },
   // 滚动切换标签样式
-  switchTab: function (e) {
+    switchTab: function (e) {
     this.setData({
       currentTab: e.detail.current
     });

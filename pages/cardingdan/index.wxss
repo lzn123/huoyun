@@ -43,12 +43,14 @@ page{
 .sus_book{
 color:#fff;
 margin-top:37rpx;
-margin-left:420rpx;
+margin-left:500rpx;
 background-color:rgb(236,168,86);
 border-radius:10rpx;
 display:block;
-width:239rpx;
+width:156rpx;
 text-align:center;
+
+
 }
 .tab-content{
   height: 100vh;

@@ -1,6 +1,6 @@
 {
-  "pages":[
-   
+  "pages": [
+    
     "pages/index/index",
     "pages/logs/logs",
     "pages/advices/advices",
@@ -27,13 +27,15 @@
     "pages/carquanbu/index",
     "pages/carwanjie/index",
     "pages/userwanjie/index",
-    "pages/smsCode/index"
-     
+    "pages/smsCode/index",
+    "pages/cardingdan/index"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "rgb(255,255,255)",
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "同城货滴",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#000"
+
   }
 }

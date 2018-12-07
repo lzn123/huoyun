@@ -81,8 +81,8 @@
 }
 .dx{
   position:absolute;
-  top:20%;
-  left:32%;
+  top:22%;
+  left:33%;
 }
 .wx-switch-input{
   width:42px !important;

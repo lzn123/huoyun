@@ -1,7 +1,7 @@
 <!--pages/carxiangqing/index.wxml-->
 <!-- <text>pages/carxiangqing/index.wxml</text> -->
 <view>
- <span color="rgb(97,99,97)">所选车型</span>
+ <span color="rgb(97,99,97)" class="pad-car">所选车型</span>
  </view>
   <!-- <view class="nav bc_white">
     <view class="{{selected?'red':'default'}}" bindtap="selected">面包车</view>
@@ -238,7 +238,7 @@
     
       <!-- <button type="">{{fomttoe}}</button> -->
 
-     <button  disabled="{{registDisabled}}"   loading="{{btnLoading}}" class='quxiao'>取消</button>
+     <button  disabled="{{registDisabled}}"   loading="{{btnLoading}}" class='quxiao' data-id="{{quanbu.id}}" bindtap='abolish'>取消</button>
 <button  disabled="{{registDisabled}}" bindtap='book' data-id="{{quanbu.id}}" loading="{{btnLoading}}" class='queding'>确定</button>
     
     

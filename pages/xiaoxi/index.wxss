@@ -1,6 +1,7 @@
 /* pages/xiaoxi/index.wxss */
 page {
   background-color: #efeff4;
+  padding-bottom: 100rpx;
 }
 .day_add{
   width:90%;

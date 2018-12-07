@@ -38,7 +38,7 @@ Page({
   },
   cardingdan: function () {
     wx.navigateTo({
-      url: '../carquanbu/index',
+      url: '../cardingdan/index',
     })
   },
   xiaoxi: function () {
