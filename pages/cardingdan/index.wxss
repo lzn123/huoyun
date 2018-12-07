@@ -1,10 +1,13 @@
 /* pages/cardingdan/index.wxss */
 /* pages/carjieshou/index.wxss */
 @import "../xuqiou/index.wxss";
+<<<<<<< HEAD
 page{
   /* width:100%; */
   height: 100vh;
 }
+=======
+>>>>>>> 5a707e17364214e8d3ffefc93d6f7531d91b1954
 .day_add{
   width:90%;
   margin:50rpx auto;
@@ -15,12 +18,18 @@ page{
 .gear{
   width:90%;
   background-color: #fff; 
+<<<<<<< HEAD
   /* margin-left:25rpx; */
   height:700rpx;
   border-radius:10rpx;
   margin:0 auto;
   
   
+=======
+  margin-left:25rpx;
+  height:700rpx;
+  border-radius:10rpx;
+>>>>>>> 5a707e17364214e8d3ffefc93d6f7531d91b1954
 }
 .gear_add{
    padding-top:28rpx;
@@ -35,6 +44,7 @@ page{
   border-radius:10rpx;
 }
 .color{
+<<<<<<< HEAD
   background-color: rgb(244,244,244); 
  /* height: 2131321rpx; */
  /* z-index: 999 */
@@ -58,4 +68,16 @@ text-align:center;
 }
 .scoll-h{
   height: 100vh;
+=======
+ background-color: rgb(244,244,244);
+ height: 1219rpx;
+}
+.sus_book{
+color:#fff;
+margin-top:37rpx;
+margin-left:520rpx;
+background-color:rgb(236,168,86);
+border-radius:10rpx;
+
+>>>>>>> 5a707e17364214e8d3ffefc93d6f7531d91b1954
 }

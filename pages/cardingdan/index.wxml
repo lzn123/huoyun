@@ -14,23 +14,39 @@
     <swiper-item>
       <scroll-view scroll-y="true" class="scoll-h">
         <block wx:for="{{jieshou}}" wx:for-item="item" wx:key="index">
+<<<<<<< HEAD
           <view class="color" wx:if="{{item.status == 3 || item.status == 5}}">
+=======
+          <view class="color">
+>>>>>>> 5a707e17364214e8d3ffefc93d6f7531d91b1954
             <view class="gear">
               <span class="gear_add">订单编号: {{item.order_id}}</span>
               <span class="gear_add">地址: {{item.user_terminus}}</span>
               <span class="gear_add">任务类型: {{item.delivery}}</span>
               <span class="gear_add">联系人姓名: {{item.party_name}}</span>
+<<<<<<< HEAD
 
               <span class="gear_add">联系人电话:{{item.party_phone}}</span>
               <span class="gear_add">所选车型:{{item.vehicle}}</span>
               <span class="gear_add">结算金额: ¥{{item.user_money}}</span>
               <view class='sus_book'>全部订单</view> 
             </view>
+=======
+              <span class="gear_add">联系人电话:{{item.party_phone}}</span>
+              <span class="gear_add">所选车型:{{item.vehicle}}</span>
+              <span class="gear_add">结算金额: ¥{{item.user_money}}</span>
+              <view class='sus_book' bindtap='sus_book' data-id="{{item.id}}">完成订单</view>
+            </view>
+
+>>>>>>> 5a707e17364214e8d3ffefc93d6f7531d91b1954
           </view>
         </block>
       </scroll-view>
     </swiper-item>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5a707e17364214e8d3ffefc93d6f7531d91b1954
     <swiper-item>
       <scroll-view scroll-y="true" class="scoll-h">
         <block wx:for="{{jieshou}}" wx:for-item="item" wx:key="index">
@@ -63,13 +79,18 @@
               <span class="gear_add">联系人电话:{{item.party_phone}}</span>
               <span class="gear_add">所选车型:{{item.vehicle}}</span>
               <span class="gear_add">结算金额: ¥{{item.user_money}}</span>
+<<<<<<< HEAD
               <view class='sus_book'>已完成</view>
+=======
+              <view class='sus_book' bindtap='sus_book' data-id="{{item.id}}">完成订单</view>
+>>>>>>> 5a707e17364214e8d3ffefc93d6f7531d91b1954
             </view>
 
           </view>
         </block>
       </scroll-view>
     </swiper-item>
+<<<<<<< HEAD
 
 
     <!-- <swiper-item>
@@ -91,6 +112,8 @@
         </block>
       </scroll-view> -->
     <!-- </swiper-item> -->
+=======
+>>>>>>> 5a707e17364214e8d3ffefc93d6f7531d91b1954
   </swiper>
 
 
