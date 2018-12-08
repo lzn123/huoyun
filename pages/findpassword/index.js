@@ -1,5 +1,6 @@
 var util = require("../../utils/util.js");
-
+const app = getApp()
+const URL = app.globalData.url
 Page({
   data:{
     registBtnTxt:"提交",
@@ -29,146 +30,99 @@ Page({
     // 页面隐藏
     
   },
+  nolike:function(){
+    wx.navigateTo({
+      url: '../login/index',
+    })
+  },
   onUnload:function(){
     // 页面关闭
     
   },
-  getPhoneNum:function(e){
-   var value  = e.detail.value;
-   this.setData({
-    phoneNum: value     
-   });
-  },
   formSubmit:function(e){
-    var param = e.detail.value;
-    this.mysubmit(param);
-  },
-  mysubmit:function (param){
-    var num = param.username.trim();
-    var flag = this.checkUserName(num)&&this.checkPhoneIsRegist(param.username)&&this.checkPassword(param)&&this.checkSmsCode(param)
-    var that = this;
-    if(flag){
-        this.setregistData1();
-        setTimeout(function(){
+    let photo = /^1[345768]{1}\d{9}$/;
+    let params = e.detail.value;
+    if (params.phone == '') {
+      showToast("手机号");
+      this.setData({
+        phfocus: true
+      })
+      return;
+    }
+    if (params.password == '') {
+      showToast("密码");
+      this.setData({
+        phfocus: true
+      })
+      return;
+    }
+    if (params.password1 == '') {
+      showToast("新密码");
+      this.setData({
+        phfocus: true
+      })
+      return;
+    }
+    if (!photo.test(params.phone)) {
+      wx.showToast({
+        title: '手机号格式不正确！',
+        duration: 2000,
+        icon: "none"
+      })
+      this.setData({
+        phfocus: true
+      })
+      return;
+    }
+    function showToast(val) {
+      wx.showToast({
+        title: val + '不能为空',
+        duration: 2000,
+        icon: "none"
+      })
+    }
+    wx.request({
+      url: URL + 'User/findpassword',
+      method: "POST",
+      data: {
+        phone: params.phone,
+        password: params.password,
+        password1:params.password1,
+       
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded' // 默认值
+      },
+      success: function (res) {
+        console.log(res.data.status)
+        if (res.data.status == 105){
           wx.showToast({
-            title: '成功',
-            icon: 'success',
-            duration: 1500
-          });
-          that.setregistData2();
-          that.redirectTo(param);
-        },2000);
-    } 
-  },
-  setregistData1:function(){
-    this.setData({
-      registBtnTxt:"提交中",
-      registDisabled: !this.data.registDisabled,
-      registBtnBgBgColor:"#999",
-      btnLoading:!this.data.btnLoading
-    });
-  },
-  setregistData2:function(){
-    this.setData({
-      registBtnTxt:"提交",
-      registDisabled: !this.data.registDisabled,
-      registBtnBgBgColor:"#ff9900",
-      btnLoading:!this.data.btnLoading
-    });
-  },
-  checkUserName:function(num){ 
-    var phone = util.regexConfig().phone;
-    // var inputUserName = param.username.trim();
-    if(phone.test(num)){
-      return true;
-    }else{
-      wx.showModal({
-        title: '提示',
-        showCancel:false,
-        content: '请输入正确的手机号码'
-      });
-      return false;
-    }
-  },
-  checkPhoneIsRegist:function(phoneNum){
-      var tempPhoneNum = "13211112222";//测试未注册手机号码
-      if(phoneNum==tempPhoneNum){
-          wx.showModal({
-          title: '提示',
-          showCancel:false,
-          content: '该手机尚未注册！'
-        });
-        return false;
-      }else{
-        return true;
-      }
-  },
-  checkPassword:function(param){
-    var userName = param.username.trim();
-    var password = param.password.trim();
-    if(password.length<=0){
-      wx.showModal({
-        title: '提示',
-        showCancel:false,
-        content: '请设置新密码'
-      });
-      return false;
-    }else if(password.length<6||password.length>20){
-      wx.showModal({
-        title: '提示',
-        showCancel:false,
-        content: '密码长度为6-20位字符'
-      });
-      return false;
-    }else{
-      return true;
-    }
-  },
-  getSmsCode:function(){
-    var phoneNum = this.data.phoneNum;
-    var that = this;
-    var count = 60;
-    if(this.checkUserName(phoneNum)&&this.checkPhoneIsRegist(phoneNum)){
-      var si = setInterval(function(){
-        if(count > 0){
-          count--;
-          that.setData({
-            getSmsCodeBtnTxt:count+' s',
-            getSmsCodeBtnColor:"#999",
-            smsCodeDisabled: true
-          });
-        }else{
-          that.setData({
-            getSmsCodeBtnTxt:"获取验证码",
-            getSmsCodeBtnColor:"#ff9900",
-            smsCodeDisabled: false
-          });
-          count = 60;
-          clearInterval(si);
+            title:'两次密码不一致',
+            duration: 2000,
+            icon: "none"
+          })
         }
-      },1000);
-    } 
-  },
-  checkSmsCode:function(param){
-    var smsCode = param.smsCode.trim();
-    var tempSmsCode = '000000';//演示效果临时变量，正式开发需要通过wx.request获取
-    if(smsCode!=tempSmsCode){
-      wx.showModal({
-        title: '提示',
-        showCancel:false,
-        content: '请输入正确的短信验证码'
-      });
-      return false;
-    }else{
-      return true;
-    }
-  },
-  redirectTo:function(param){
-    //需要将param转换为字符串
-    param = JSON.stringify(param);
-    wx.redirectTo({
-      url: '../main/index?param='+ param//参数只能是字符串形式，不能为json对象
+        if (res.data.status == 200) {
+          wx.showToast({
+            title: '更改成功',
+            duration: 2000,
+            icon: "none"
+          })
+          wx.navigateTo({
+            url: '../login/index',
+          })
+        }
+        if (res.data.status == 1050) {
+          wx.showToast({
+            title: '更改失败',
+            duration: 2000,
+            icon: "none"
+          })
+        }
+      }
     })
+    
   }
+
 
 })

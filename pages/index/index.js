@@ -1,4 +1,6 @@
-var app = getApp();
+var util = require("../../utils/util.js");
+const app = getApp()
+const URL = app.globalData.url
 Page({
   data: {
     indexcar: true,
@@ -55,12 +57,12 @@ Page({
     })
   },
   onLoad: function (options) {
-    this.setData({
-      gender: app.globalData.userInfo.gender,
-      name: (app.globalData.userInfo.name == '') ? app.globalData.userInfo.nickName : app.globalData.userInfo.name,
-      phone: app.globalData.userInfo.phone,
-      vehicle: app.globalData.userInfo.vehicle
-    })
+    // this.setData({
+    //   gender: app.globalData.userInfo.gender,
+    //   name: (app.globalData.userInfo.name == '') ? app.globalData.userInfo.nickName : app.globalData.userInfo.name,
+    //   phone: app.globalData.userInfo.phone,
+    //   vehicle: app.globalData.userInfo.vehicle
+    // })
   },
   //登入控制器
   login:function(){
@@ -121,50 +123,6 @@ Page({
     }catch(e){
       /////
     }
-    // var car = this;
-    // var user = this;
-    // wx.getStorage({
-    //   key: 'car',
-    //   success: function (res) {
-    //     console.log(res)
-    //     if (res.data.account == ""){
-    //       wx.navigateTo({
-    //       url: "../login/index",
-    //     })
-    //     }else{
-    //       wx.navigateTo({
-    //         url: "../car/index",
-    //       })
-    //     }
-    //   }
-    // })
-
-//-----------
-
-
-
-
-    ////////////////////////////////////
-    // wx.getStorage({
-    //   key: 'user',
-    //   success: function (res) {
-    //     console.log(res.data.account)
-    //     if (res.data.account == "") {
-    //       wx.navigateTo({
-    //         url: "../login/index",
-    //       })
-    //     } else {
-    //       wx.navigateTo({
-    //         url: "../personal/index",
-    //       })
-    //     }
-    //   },
-    //   fail:function(){
-    //     wx.navigateTo({
-    //       url: "../login/index",
-    //     })
-    //   }
-    // })
   },
   //用户消息控制器
   nser:function(){
@@ -258,93 +216,6 @@ Page({
       },
     })
   },
-
-  onLoad:function(){
-    console.log(app.globalData.name)
-  },
-  // onLoad: function () {
-
-  //   let { bluraddress, strLatitude, strLongitude, endLatitude, endLongitude } = app.globalData
-  //   this.setData({
-  //     markers: [{
-  //       iconPath: "../../assets/images/str.png",
-  //       id: 0,
-  //       latitude: strLatitude,
-  //       longitude: strLongitude,
-  //       width: 30,
-  //       height: 30
-  //     }, {
-  //       iconPath: "../../assets/images/end.png",
-  //       id: 0,
-  //       latitude: endLatitude,
-  //       longitude: endLongitude,
-  //       width: 100,
-  //       height: 30
-  //     }],
-  //     polyline: [{
-  //       points: [{
-  //         longitude: strLongitude,
-  //         latitude: strLatitude
-  //       }, {
-  //         longitude: endLongitude,
-  //         latitude: endLatitude
-
-
-
-  //       }],
-  //       color: "red",
-  //       width: 4,
-  //       dottedLine: true
-  //     }],
-
-  //   });
-
-  //   wx.getSystemInfo({
-  //     success: (res) => {
-  //       this.setData({
-  //         controls: [{
-  //           id: 1,
-  //           iconPath: '../../assets/images/mapCart.png',
-  //           position: {
-  //             left: res.windowWidth / 2 - 11,
-  //             top: res.windowHeight / 2 - 60,
-  //             width: 22,
-  //             height: 45
-  //           },
-  //           clickable: true
-  //         }, {
-  //           id: 2,
-  //           iconPath: '../../assets/images/location.png',
-  //           position: {
-  //             left: 20, // 单位px
-  //             top: res.windowHeight - 150,
-  //             width: 40, // 控件宽度/px
-  //             height: 40,
-  //           },
-  //           clickable: true
-  //         }, {
-  //           id: 3,
-  //           iconPath: '../../assets/images/walk.png',
-  //           position: {
-  //             left: 20, // 单位px
-  //             top: res.windowHeight - 200,
-  //             width: 40, // 控件宽度/px
-  //             height: 40,
-  //           },
-  //           clickable: true
-  //         }],
-
-  //       })
-  //     }
-  //   })
-
-  // },
-
-  // onShow() {
-  //   this.requesDriver();
-  //   this.mapCtx = wx.createMapContext("didiMap");
-  //   this.movetoPosition();
-  // },
   requesDriver() {
     util.request({
       url: '',
@@ -371,10 +242,22 @@ Page({
   onReady() {
 
   },
+  //监听页面的除此加载
+  //请求后台table的车辆选中
   onShow: function () {
-    // wx.navigateTo({
-    //   url: "../login/index",
-    // })
+    var that = this
+    wx.request({
+      url: URL + 'User/upload',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        console.log(res.data)
+        that.setData({
+          quanbu: res.data,
+        })
+      }
+    })
   },
   movetoPosition: function () {
     this.mapCtx.moveToLocation();

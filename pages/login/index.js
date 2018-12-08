@@ -128,7 +128,7 @@ Page({
 
   forgotpassword:function(){
        wx.navigateTo({
-         url: '../guanli/index',
+         url: '../findpassword/index',
        })
   },
   usernameInput: function (event) {

@@ -15,11 +15,11 @@
     <cover-view class="ft">
     
     <cover-view class="nav bc_white"  style='width:100%;margin-bottom:30rpx'>
-   
-     <cover-view class="{{indexcar?'red':'default'}}" data-type='1' catchtap="indexcar">面包车</cover-view>
-    <cover-view class="{{indexcar1?'red':'default'}}" catchtap="indexcar1">小型厢货</cover-view>
-    <cover-view class="{{indexcar2?'red':'default'}}" catchtap="indexcar2">大型货车</cover-view>
-
+      <block wx:for="{{quanbu}}" wx:for-item="item" wx:key="index" >
+     <cover-view class="{{indexcar?'red':'default'}}" data-type='1' catchtap="indexcar" > {{item.name}}</cover-view>
+<!--     <cover-view class="{{indexcar1?'red':'default'}}" catchtap="indexcar1">{{}}</cover-view>
+    <cover-view class="{{indexcar2?'red':'default'}}" catchtap="indexcar2">大型货车</cover-view> -->
+   </block>
  
  </cover-view>
     
