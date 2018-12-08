@@ -3,9 +3,6 @@ const app = getApp()
 const URL = app.globalData.url
 Page({
   data: {
-    indexcar: true,
-   indexcar1: false,
-    indexcar2: false,
     departure: '出发地',
     destination: '目的地',
     jiner:'45',
@@ -15,25 +12,9 @@ Page({
     imageWidth: wx.getSystemInfoSync().windowWidth
   },
   indexcar: function (e) {
-    console.log(e)
+    var val = e.currentTarget.dataset.index
     this.setData({
-      indexcar: true,
-      indexcar1: false,
-      indexcar2: false
-    })
-  },
-  indexcar1: function (e) {
-    this.setData({
-      indexcar1: true,
-      indexcar: false,
-      indexcar2: false
-    })
-  },
-  indexcar2: function (e) {
-    this.setData({
-      indexcar2: true,
-      indexcar: false,
-      indexcar1: false
+      indexcar: val,
     })
   },
   sexDeparture: function () {
@@ -63,6 +44,21 @@ Page({
     //   phone: app.globalData.userInfo.phone,
     //   vehicle: app.globalData.userInfo.vehicle
     // })
+
+    var that = this
+    wx.request({
+      url: URL + 'User/upload',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        console.log(res)
+        that.setData({
+          quanbu: res.data,
+          indexcar: res.data[0].id,
+        })
+      }
+    })
   },
   //登入控制器
   login:function(){
@@ -188,7 +184,7 @@ Page({
           })
         } else {
           wx.navigateTo({
-      url: '../xuqiou/index?departure=' + departure + '&destination=' + destination,
+            url: '../xuqiou/index?departure=' + departure + '&destination=' + destination + '&typeid=' + that.data.indexcar,
           })
           // wx.showToast({
           //   title: '请登入',
@@ -210,7 +206,7 @@ Page({
           })
         } else {
           wx.navigateTo({
-      url: '../xuqiou/index?departure=' + departure + '&destination=' + destination,
+            url: '../xuqiou/index?departure=' + departure + '&destination=' + destination + '&typeid=' + that.data.indexcar,
           })
         }
       },
@@ -245,19 +241,7 @@ Page({
   //监听页面的除此加载
   //请求后台table的车辆选中
   onShow: function () {
-    var that = this
-    wx.request({
-      url: URL + 'User/upload',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        console.log(res.data)
-        that.setData({
-          quanbu: res.data,
-        })
-      }
-    })
+   
   },
   movetoPosition: function () {
     this.mapCtx.moveToLocation();

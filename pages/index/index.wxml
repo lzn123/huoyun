@@ -16,25 +16,17 @@
     
     <cover-view class="nav bc_white"  style='width:100%;margin-bottom:30rpx'>
       <block wx:for="{{quanbu}}" wx:for-item="item" wx:key="index" >
-     <cover-view class="{{indexcar?'red':'default'}}" data-type='1' catchtap="indexcar" > {{item.name}}</cover-view>
-<!--     <cover-view class="{{indexcar1?'red':'default'}}" catchtap="indexcar1">{{}}</cover-view>
-    <cover-view class="{{indexcar2?'red':'default'}}" catchtap="indexcar2">大型货车</cover-view> -->
+     <cover-view class="{{indexcar == item.id ?'red':'default'}}" catchtap="indexcar" data-index="{{item.id}}"> {{item.name}}</cover-view>
    </block>
  
  </cover-view>
     
     <cover-view style="display:block;width:100%;justify-content:ceter">
-    <cover-view class="{{indexcar?'show':'hidden'}}">
-    <cover-image style='width:153rpx;height:92rpx;' src="../../images/qiche.png"></cover-image>
+    <block wx:for="{{quanbu}}" wx:for-item="item" wx:key="index" >
+    <cover-view class="{{indexcar == item.id ?'show':'hidden'}}">
+    <cover-image style='width:153rpx;height:92rpx;' src="https://g.hbyingluo.com/{{item.pic}}"></cover-image>
     </cover-view>
-      
-      <cover-view class="{{indexcar1?'show':'hidden'}}">
-    <cover-image mode="aspectFit" style='width:153rpx;height:92rpx;' src="../../images/xiaoqiche.png"></cover-image>
-     </cover-view>
-
-      <cover-view class="{{indexcar2?'show':'hidden'}}">
-    <cover-image style='width:153rpx;height:92rpx;'  src="../../images/dahuoche.png"></cover-image>
-     </cover-view>
+    </block>
      </cover-view>
 
     <cover-view class='boder' ></cover-view>

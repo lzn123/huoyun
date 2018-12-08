@@ -4,9 +4,6 @@ const app = getApp()
 const URL = app.globalData.url
 Page({
   data: {
-    selected: true,
-    selected1: false,
-    selected2: false,
     departure: '出发地',
     destination: '目的地',
     fomttoe:'确定',
@@ -39,14 +36,26 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (option) {
+    console.log(option);
     var that = this  
     var departure = option.departure
     var destination = option.destination
+    var typeid = option.typeid
+    wx.request({
+      url: URL + 'User/car_type?id=' + typeid,
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        that.setData({
+          car_type: res.data,
+        })
+      }
+    })
     that.setData({
       departure: departure,
         destination: destination
     })
-
   },
   formSubmit: function (e) {
     try {

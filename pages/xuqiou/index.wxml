@@ -1,49 +1,18 @@
 <!--pages/need/index.wxml-->
 <form  bindsubmit="formSubmit" bindreset="formReset" >
   <view class="nav bc_white">
-    <view class="{{selected?'red':'default'}}" bindtap="selected">面包车</view>
-    <view class="{{selected1?'red':'default'}}" bindtap="selected1">小型厢货</view>
-    <view class="{{selected2?'red':'default'}}" bindtap="selected2">大型货车</view>
+    <view class="red">{{car_type.name}}</view>
   </view>
-  <view class="{{selected?'show':'hidden'}}">
-    <image src="/images/qiche.png"></image>
+  <view class="show">
+    <image src="https://g.hbyingluo.com/{{car_type.pic}}"></image>
     <view class="tabs">
       <view class="tabs-left">
         <span>车厢容积</span>
-        <span>2*1*1.1</span>
+        <span>{{car_type.volume}}</span>
       </view>
       <view class="tabs-right">
         <span>载重</span>
-        <span>490kg</span>
-      </view>
-    </view>
-  </view>
-
-  <view class="{{selected1?'show':'hidden'}}">
-    <image src="/images/xiaoqiche.png"></image>
-    <view class="tabs">
-      <view class="tabs-left">
-        <span>车厢容积</span>
-        <span>2*1*1.1</span>
-      </view>
-      <view class="tabs-right">
-        <span>载重</span>
-        <span>490kg</span>
-      </view>
-    </view>
-  </view>
-
-
-  <view class="{{selected2?'show':'hidden'}}">
-    <image src="/images/dahuoche.png"></image>
-    <view class="tabs">
-      <view class="tabs-left">
-        <span>车厢容积</span>
-        <span>2*1*1.1</span>
-      </view>
-      <view class="tabs-right">
-        <span>载重</span>
-        <span>490kg</span>
+        <span>{{car_type.load}}</span>
       </view>
     </view>
   </view>

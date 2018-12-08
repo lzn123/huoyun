@@ -43,6 +43,7 @@ App({
   },
   globalData:{
     url:'https://g.hbyingluo.com/api/',
+    img_url: 'https://g.hbyingluo.com',
     header:{'Session': ''},
     user:'',
     car:''
